@@ -13,9 +13,9 @@ Copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Internation
 ##    TOC
 ////////////////////////////////////////////////////
 
-    [About](#about)  
-    [Permissions and Security](#permissions-and-security)  
-    [Licensing](#licensing)  
+[About](#about)  
+[Permissions and Security](#permissions-and-security)  
+[Licensing](#licensing)  
     [Installation Requirements](#installation-requirements)  
     [Developer Key Generation](#developer-key-generation)  
     [Getting Started - Installation](#getting-started-installation)  
@@ -40,7 +40,7 @@ In it's current state, Threadz does not support other LMS platforms besides Inst
 
 
 //////////////////////////////////////////////
-###   Permissions and Security
+###   Permissions and Security [permissions-security]  ##
 //////////////////////////////////////////////
 
 Threadz uses the IMSBasicLTI to oAuth the LTI tool into Canvas.  Threadz needs to authenticate the user in order to get the user's token. This token is not saved, but used immediately to access the Canvas API to collect the discussion data for the course.  This data is then saved into session.
@@ -70,12 +70,12 @@ Threads by Eastern Washington University - Instructional Technology is licensed 
 
 For Canvas:  
 1. Generate Canvas developer key. For access to the API data, Canvas requires a developer key to be generated for each application.  
-    A. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).  
-    B. complete the form  
-        a. on the question 'Are you a current Canvas...' select 'Client'.  
-        b. for the question 'Oauth2 Redirect URI', make sure this is the same path as the directory where you placed the Threadz directory on the webserver.  
-        c. all other questions should be self evident.  
-    C. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.  
+  A. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).  
+  B. complete the form  
+    a. on the question 'Are you a current Canvas...' select 'Client'.  
+    b. for the question 'Oauth2 Redirect URI', make sure this is the same path as the directory where you placed the Threadz directory on the webserver.  
+    c. all other questions should be self evident.  
+  C. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.  
 
 
 For Moodle: Not yet supported  
