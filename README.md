@@ -40,7 +40,7 @@ In it's current state, Threadz does not support other LMS platforms besides Inst
 
 
 //////////////////////////////////////////////
-###   Permissions and Security [permissions-security]  ##
+###   Permissions and Security  ##
 //////////////////////////////////////////////
 
 Threadz uses the IMSBasicLTI to oAuth the LTI tool into Canvas.  Threadz needs to authenticate the user in order to get the user's token. This token is not saved, but used immediately to access the Canvas API to collect the discussion data for the course.  This data is then saved into session.
