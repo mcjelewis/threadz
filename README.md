@@ -68,7 +68,7 @@ Threads by Eastern Washington University - Instructional Technology is licensed 
 ###  Developer Key Generation ##
 //////////////////////////////////////////////
 
-For Canvas:  
+**For Canvas:**  
 Generate Canvas developer key. For access to the API data, Canvas requires a developer key to be generated for each application.  
   1. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).  
   2. complete the form  
@@ -78,10 +78,10 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
   3. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.  
 
 
-For Moodle: Not yet supported  
-For Sakai: Not yet supported  
-For Blackboard: Not yet supported  
-For D2L: Not yet supported  
+**For Moodle:** Not yet supported  
+**For Sakai:** Not yet supported  
+**For Blackboard:** Not yet supported  
+**For D2L:** Not yet supported  
 
 
 //////////////////////////////////////////////
@@ -129,19 +129,20 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
 ###    Acknowledgements ##
 ////////////////////////////////////////////////////
 
-SNAPP (Social Network Adapting Pedagogical Practice) - Dr. Shane Dawson etal.  
-URL: [http://www.snappvis.org/](http://www.snappvis.org/)  
-The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for DVT.
+[SNAPP (Social Network Adapting Pedagogical Practice)](http://www.snappvis.org/)
+Dr. Shane Dawson etal.  
+The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for Threadz.
 
 
-IMSBasicLTI - Copyright (c) 2007 Andy Smith  
-URL: [https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2](https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2)  
+[IMSBasicLTI] (https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2)  
+Copyright (c) 2007 Andy Smith  
 The cody provided by Andy Smith creates a secure Oauth class to access the lti launch data.
 
 
-D3.js - Copyright (c) 2010-2015, Michael Bostock  
-URL: [http://d3js.org/](http://d3js.org/)  
-D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3's emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.
+[D3.js](http://d3js.org/)  
+Copyright (c) 2010-2015, Michael Bostock  
+D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3's emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.  
+
 
 
 
