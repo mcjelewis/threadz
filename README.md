@@ -2,15 +2,10 @@
 
 ***
 Last Modified Date: Oct 7, 2015
-
 Name: Threadz
-
 Author: Matt Lewis
-
 Contact: mlewis23@ewu.edu
-
 Organization: Eastern Washington University - Instructional Technology
-
 Copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License Version: 1.0
 
 ***
