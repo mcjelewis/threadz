@@ -16,12 +16,12 @@ Copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Internation
 [About](#about)  
 [Permissions and Security](#permissions-and-security)  
 [Licensing](#licensing)  
-    [Installation Requirements](#installation-requirements)  
-    [Developer Key Generation](#developer-key-generation)  
-    [Getting Started - Installation](#getting-started-installation)  
-    [Getting Started - Stylesheet](#getting-started-stylesheet)  
-    [Adding Canvas LTI](#adding-canvas-lti)  
-    [Acknowledgements](#acknowledgements)  
+[Installation Requirements](#installation-requirements)  
+[Developer Key Generation](#developer-key-generation)  
+[Getting Started - Installation](#getting-started-installation)  
+[Getting Started - Stylesheet](#getting-started-stylesheet)  
+[Adding Canvas LTI](#adding-canvas-lti)  
+[Acknowledgements](#acknowledgements)  
 
 
 ////////////////////////////////////////////////////
@@ -98,8 +98,8 @@ For D2L: Not yet supported
     - $client_id = [your ID]  
     - $client_secret = [your Key]  
 6. Edit the config-threadz.xml file.  
-    * There are three lines that need to be edited, all related to the path to your webserver. Modify lines for launch_url, domain, url with your server paths. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html  
-7. Move the lib/pl/svgDownload.pl file into your servers perl directory (typically the cgi-bin outside of the webserver direcorty in Apache). Check the directory path in the hidde form titled svgform to make sure it matches where the svgDownload.pl  
+    - There are three lines that need to be edited, all related to the path to your webserver. Modify lines for launch_url, domain, url with your server paths. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html  
+7. Move the lib/pl/svgDownload.pl file into your server's perl directory (typically the cgi-bin outside of the webserver directory in Apache). On the treadz.php page, check the directory path in the hidden form titled svgform to make sure it matches where the svgDownload.pl  
 
 
 //////////////////////////////////////////////
@@ -129,7 +129,7 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
 ###    Acknowledgements ##
 ////////////////////////////////////////////////////
 
-SNAPP (Social Network Adapting Pedagogical Practice): - Dr. Shane Dawson etal.  
+SNAPP (Social Network Adapting Pedagogical Practice) - Dr. Shane Dawson etal.  
 URL: [http://www.snappvis.org/](http://www.snappvis.org/)  
 The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for DVT.
 
