@@ -1,12 +1,12 @@
 # Threadz
 
 ***
-Last Modified Date: Oct 7, 2015
-Name: Threadz
-Author: Matt Lewis
-Contact: mlewis23@ewu.edu
-Organization: Eastern Washington University - Instructional Technology
-Copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License Version: 1.0
+Last Modified Date: Oct 7, 2015  
+Name: Threadz  
+Author: Matt Lewis  
+Contact: mlewis23@ewu.edu  
+Organization: Eastern Washington University - Instructional Technology  
+Copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License Version: 1.0  
 
 ***
 ////////////////////////////////////////////////////
@@ -78,36 +78,28 @@ For Canvas:
     C. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.
 
 
-For Moodle: Not yet supported
-For Sakai: Not yet supported
-For Blackboard: Not yet supported
-For D2L: Not yet supported
+For Moodle: Not yet supported  
+For Sakai: Not yet supported  
+For Blackboard: Not yet supported  
+For D2L: Not yet supported  
 
 
 //////////////////////////////////////////////
 ###    Getting Started - Installation [getting-started-installation] ##
 //////////////////////////////////////////////
 
-1. In the php.ini file on the webserver, set 'allow_url_fopen' to on.
-
-2. Download treadz.zip.
-
-3. Save Threadz directory onto websever.
-
-4. Generate Canvas developer key if you haven't already done so (see [Canvas Developer Key Generation](#canvas-developer-key-generation).
-
-5. Edit the launch.php file. Edit the following variables found between lines 15-40.
-
-        * $domainThreadz = [your url]
-        
-        * $lms = [your LMS]
-        
-        * $client_id = [your ID]
-        
-        * $client_secret = [your Key]
-6. Edit the config-threadz.xml file.
-        * There are three lines that need to be edited, all related to the path to your webserver. Modify lines for launch_url, domain, url with your server paths. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html
-7. Move the lib/pl/svgDownload.pl file into your servers perl directory (typically the cgi-bin outside of the webserver direcorty in Apache). Check the directory path in the hidde form titled svgform to make sure it matches where the svgDownload.pl
+1. In the php.ini file on the webserver, set 'allow_url_fopen' to on.  
+2. Download treadz.zip.  
+3. Save Threadz directory onto websever.  
+4. Generate Canvas developer key if you haven't already done so (see [Canvas Developer Key Generation](#canvas-developer-key-generation).  
+5. Edit the launch.php file. Edit the following variables found between lines 15-40.  
+    - $domainThreadz = [your url]       
+    - $lms = [your LMS]  
+    - $client_id = [your ID]  
+    - $client_secret = [your Key]  
+6. Edit the config-threadz.xml file.  
+    * There are three lines that need to be edited, all related to the path to your webserver. Modify lines for launch_url, domain, url with your server paths. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html  
+7. Move the lib/pl/svgDownload.pl file into your servers perl directory (typically the cgi-bin outside of the webserver direcorty in Apache). Check the directory path in the hidde form titled svgform to make sure it matches where the svgDownload.pl  
 
 
 //////////////////////////////////////////////
