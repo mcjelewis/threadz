@@ -69,13 +69,13 @@ Threads by Eastern Washington University - Instructional Technology is licensed 
 //////////////////////////////////////////////
 
 For Canvas:  
-1. Generate Canvas developer key. For access to the API data, Canvas requires a developer key to be generated for each application.  
-  A. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).  
-  B. complete the form  
-    a. on the question 'Are you a current Canvas...' select 'Client'.  
-    b. for the question 'Oauth2 Redirect URI', make sure this is the same path as the directory where you placed the Threadz directory on the webserver.  
-    c. all other questions should be self evident.  
-  C. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.  
+Generate Canvas developer key. For access to the API data, Canvas requires a developer key to be generated for each application.  
+  1. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).  
+  2. complete the form  
+    1. on the question 'Are you a current Canvas...' select 'Client'.  
+    2. for the question 'Oauth2 Redirect URI', make sure this is the same path as the directory where you placed the Threadz directory on the webserver.  
+    3. all other questions should be self evident.  
+  3. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.  
 
 
 For Moodle: Not yet supported  
