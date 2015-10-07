@@ -28,7 +28,7 @@ Copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Internation
 ###  About ##
 ////////////////////////////////////////////////////
 
-Built as a Learning Tools Interoperability (LTI) integration to Canvas (EWU's Learning Management System), Threadz is a discussion visualization tool that adds graphs and statistics to Canvas discussions.
+Built as a Learning Tools Interoperability (LTI) integration to Canvas (the learning management system at Eastern Washington University), Threadz is a discussion visualization tool that adds graphs and statistics to Canvas discussions.
  
 Online discussions provide valuable information about the dynamics of a course and its constituents.  Much of this information is found within the content of the posts, but other elements are hidden within the social network connection and interactions between students and between students and instructors.  Threadz is a tool that extracts this hidden information and puts it on display.
  
@@ -85,7 +85,7 @@ For D2L: Not yet supported
 
 
 //////////////////////////////////////////////
-###    Getting Started - Installation [getting-started-installation] ##
+###    Getting Started Installation ##
 //////////////////////////////////////////////
 
 1. In the php.ini file on the webserver, set 'allow_url_fopen' to on.  
@@ -103,7 +103,7 @@ For D2L: Not yet supported
 
 
 //////////////////////////////////////////////
-###    Getting Started - Stylesheet [getting-started-stylesheet] ##
+###    Getting Started Stylesheet ##
 //////////////////////////////////////////////
 
 Threadz uses the jQuery UI themes.  You can use the jQuery Themeroller to create your own from [http://jqueryui.com/themeroller/](http://jqueryui.com/themeroller/). Saved into the css directory are the jQuery themes cupertino, overcast, paperGrinder, redmond and overcastBluesky. The default theme, overcastBluesky, can be changed from the meta data in threadz.php.
