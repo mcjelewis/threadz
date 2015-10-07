@@ -92,7 +92,7 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
 2. Download treadz.zip.  
 3. Save Threadz directory onto websever.  
 4. Generate Canvas developer key if you haven't already done so (see [Canvas Developer Key Generation](#canvas-developer-key-generation).  
-5. Edit the launch.php file. Edit the following variables found between lines 15-40.  
+5. Edit the launch.php file. Edit the following variables found between lines 21-41.  
     - $domainThreadz = [your url]       
     - $lms = [your LMS]  
     - $client_id = [your ID]  
