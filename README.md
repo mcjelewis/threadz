@@ -39,6 +39,7 @@ The permissions to use this tool are not restricted by role. Both students and t
 In it's current state, Threadz does not support other LMS platforms besides Instructure's Canvas. If you are interested in developing Threadz for a different LMS please contact us, we'd enjoy partnering with you.
 
 
+
 //////////////////////////////////////////////
 ###   Permissions and Security  ##
 //////////////////////////////////////////////
@@ -48,11 +49,13 @@ Threadz uses the IMSBasicLTI to oAuth the LTI tool into Canvas.  Threadz needs t
 The role permissions for Threadz are not locked down.  Anyone with access to the course discussions will have access to create the discussion visualizations.
 
 
+
 ////////////////////////////////////////////////////
 ##    Licensing ##
 ////////////////////////////////////////////////////
 
 Threads by Eastern Washington University - Instructional Technology is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
 
 
 //////////////////////////////////////////////
@@ -62,6 +65,7 @@ Threads by Eastern Washington University - Instructional Technology is licensed 
 1. Access to a directory on a PHP webserver with a SSL Certificate  
 2. Access to php.ini file, or make sure the 'allow_url_fopen' variable is set to on  
 3. Canvas developer key  
+
 
 
 //////////////////////////////////////////////
@@ -84,6 +88,7 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
 **For D2L:** Not yet supported  
 
 
+
 //////////////////////////////////////////////
 ###    Getting Started Installation ##
 //////////////////////////////////////////////
@@ -102,6 +107,7 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
 7. Move the lib/pl/svgDownload.pl file into your server's perl directory (typically the cgi-bin outside of the webserver directory in Apache). On the treadz.php page, check the directory path in the hidden form titled svgform to make sure it matches where the svgDownload.pl  
 
 
+
 //////////////////////////////////////////////
 ###    Getting Started Stylesheet ##
 //////////////////////////////////////////////
@@ -109,11 +115,12 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
 Threadz uses the jQuery UI themes.  You can use the jQuery Themeroller to create your own from [http://jqueryui.com/themeroller/](http://jqueryui.com/themeroller/). Saved into the css directory are the jQuery themes cupertino, overcast, paperGrinder, redmond and overcastBluesky. The default theme, overcastBluesky, can be changed from the meta data in threadz.php.
 
 
+
 ////////////////////////////////////////////////////
 ###    Adding Canvas LTI ##
 ////////////////////////////////////////////////////
 
-Canvas has a user guide about how to set up an LTI : https://guides.instructure.com/m/4214/l/74559-how-do-i-configure-an-external-app-for-an-account-using-a-url
+Canvas has a user guide about how to set up an LTI : https://guides.instructure.com/m/4214/l/74559-how-do-i-configure-an-external-app-for-an-account-using-a-url  
 1. Open a course in Canvas  
 2. Go to the 'Apps' tab in course Settings  
 3. Click 'View App Configurations'  
@@ -123,6 +130,7 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
 7. Consumer Key: leave empty  
 8. Shared Secret: threadz-v1  
 9. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).  
+
 
 
 ////////////////////////////////////////////////////
