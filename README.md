@@ -79,11 +79,8 @@ For Canvas:
 
 
 For Moodle: Not yet supported
-
 For Sakai: Not yet supported
-
 For Blackboard: Not yet supported
-
 For D2L: Not yet supported
 
 
