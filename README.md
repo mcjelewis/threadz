@@ -13,15 +13,15 @@ Copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Internation
 ##    TOC
 ////////////////////////////////////////////////////
 
-    [About](#about)
-    [Permissions and Security](#permissions-and-security)
-    [Licensing](#licensing)
-    [Installation Requirements](#installation-requirements)
-    [Developer Key Generation](#developer-key-generation)
-    [Getting Started - Installation](#getting-started-installation)
-    [Getting Started - Stylesheet](#getting-started-stylesheet)
-    [Adding Canvas LTI](#adding-canvas-lti)
-    [Acknowledgements](#acknowledgements)
+    [About](#about)  
+    [Permissions and Security](#permissions-and-security)  
+    [Licensing](#licensing)  
+    [Installation Requirements](#installation-requirements)  
+    [Developer Key Generation](#developer-key-generation)  
+    [Getting Started - Installation](#getting-started-installation)  
+    [Getting Started - Stylesheet](#getting-started-stylesheet)  
+    [Adding Canvas LTI](#adding-canvas-lti)  
+    [Acknowledgements](#acknowledgements)  
 
 
 ////////////////////////////////////////////////////
@@ -59,23 +59,23 @@ Threads by Eastern Washington University - Instructional Technology is licensed 
 ###   Installation Requirements ##
 //////////////////////////////////////////////
 
-1. Access to a directory on a PHP webserver with a SSL Certificate
-2. Access to php.ini file, or make sure the 'allow_url_fopen' variable is set to on
-3. Canvas developer key
+1. Access to a directory on a PHP webserver with a SSL Certificate  
+2. Access to php.ini file, or make sure the 'allow_url_fopen' variable is set to on  
+3. Canvas developer key  
 
 
 //////////////////////////////////////////////
 ###  Developer Key Generation ##
 //////////////////////////////////////////////
 
-For Canvas:
-1. Generate Canvas developer key. For access to the API data, Canvas requires a developer key to be generated for each application.
-    A. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).
-    B. complete the form
-        a. on the question 'Are you a current Canvas...' select 'Client'.
-        b. for the question 'Oauth2 Redirect URI', make sure this is the same path as the directory where you placed the Threadz directory on the webserver.
-        c. all other questions should be self evident.
-    C. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.
+For Canvas:  
+1. Generate Canvas developer key. For access to the API data, Canvas requires a developer key to be generated for each application.  
+    A. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).  
+    B. complete the form  
+        a. on the question 'Are you a current Canvas...' select 'Client'.  
+        b. for the question 'Oauth2 Redirect URI', make sure this is the same path as the directory where you placed the Threadz directory on the webserver.  
+        c. all other questions should be self evident.  
+    C. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.  
 
 
 For Moodle: Not yet supported  
@@ -114,49 +114,33 @@ Threadz uses the jQuery UI themes.  You can use the jQuery Themeroller to create
 ////////////////////////////////////////////////////
 
 Canvas has a user guide about how to set up an LTI : https://guides.instructure.com/m/4214/l/74559-how-do-i-configure-an-external-app-for-an-account-using-a-url
-1. Open a course in Canvas
-
-2. Go to the 'Apps' tab in course Settings.
-
-3. Click 'View App Configurations'
-
-4. Click 'Add App'
-
-5. Configuration Type: select 'By URL'from the drop down list
-
-6. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.
-
-7. Consumer Key: leave empty
-
-8. Shared Secret: threadz-v1
-
-9. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).
-
-
+1. Open a course in Canvas  
+2. Go to the 'Apps' tab in course Settings  
+3. Click 'View App Configurations'  
+4. Click 'Add App'  
+5. Configuration Type: select 'By URL'from the drop down list  
+6. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.  
+7. Consumer Key: leave empty  
+8. Shared Secret: threadz-v1  
+9. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).  
 
 
 ////////////////////////////////////////////////////
 ###    Acknowledgements ##
 ////////////////////////////////////////////////////
 
-SNAPP (Social Network Adapting Pedagogical Practice): - Dr. Shane Dawson etal.
-
-URL: [http://www.snappvis.org/](http://www.snappvis.org/)
-
+SNAPP (Social Network Adapting Pedagogical Practice): - Dr. Shane Dawson etal.  
+URL: [http://www.snappvis.org/](http://www.snappvis.org/)  
 The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for DVT.
 
 
-IMSBasicLTI - Copyright (c) 2007 Andy Smith
-
-URL: [https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2](https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2)
-
+IMSBasicLTI - Copyright (c) 2007 Andy Smith  
+URL: [https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2](https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2)  
 The cody provided by Andy Smith creates a secure Oauth class to access the lti launch data.
 
 
-D3.js - Copyright (c) 2010-2015, Michael Bostock
-
-URL: [http://d3js.org/](http://d3js.org/)
-
+D3.js - Copyright (c) 2010-2015, Michael Bostock  
+URL: [http://d3js.org/](http://d3js.org/)  
 D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3's emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.
 
 
