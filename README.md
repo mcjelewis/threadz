@@ -34,7 +34,7 @@ Online discussions provide valuable information about the dynamics of a course a
  
 The visual representations created from social network connections and interactions between students and instructors in a discussion assist in identifying specific behaviors and characteristics within the course, such as: learner isolation, non-integrated groups, instructor-centric discussions, and key integration (power) users and groups. By identifying these behaviors and characteristics, the instructor can affect change in these interactions to help make the discussions and classroom discourse more accessible to all.
 
-The permissions to use this tool are not restricted by role. Both students and teachers are able to access Threadz when made available.  To disable Threadz in Canvas, within the course settings Navigation tab, move Threadz below the hide from students line.
+The permissions to use this tool are not restricted by role. Both students and teachers are able to access Threadz when made available.  To disable Threadz in Canvas, within the course settings Navigation tab, move Threadz below the navigation line.
  
 In it's current state, Threadz does not support other LMS platforms besides Instructure's Canvas. If you are interested in developing Threadz for a different LMS please contact us, we'd enjoy partnering with you.
 
@@ -95,7 +95,7 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
 
 1. In the php.ini file on the webserver, set 'allow_url_fopen' to on.  
 2. Download treadz.zip.  
-3. Save Threadz directory onto websever.  
+3. Save Threadz directory onto the websever.  
 4. Generate Canvas developer key if you haven't already done so (see [Canvas Developer Key Generation](#canvas-developer-key-generation).  
 5. Edit the launch.php file. Edit the following variables found between lines 21-41.  
     - $domainThreadz = [your url]       
@@ -103,8 +103,8 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
     - $client_id = [your ID]  
     - $client_secret = [your Key]  
 6. Edit the config-threadz.xml file.  
-    - There are three lines that need to be edited, all related to the path to your webserver. Modify lines for launch_url, domain, url with your server paths. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html  
-7. Move the lib/pl/svgDownload.pl file into your server's perl directory (typically the cgi-bin outside of the webserver directory in Apache). On the treadz.php page, check the directory path in the hidden form titled svgform to make sure it matches where the svgDownload.pl  
+    - There are three lines that need to be edited, all related to the path to your webserver. Modify lines for the launch_url, domain, and url properties with path to your server. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html  
+7. Move the lib/pl/svgDownload.pl file into your server's perl directory (typically the cgi-bin outside of the webserver directory in Apache). On the treadz.php page, check the directory path in the hidden form titled svgform to make sure it matches where the svgDownload.pl page has been placed. This file is what is used to save the visualizations out as pdf, png, or svg files. 
 
 
 
@@ -124,13 +124,14 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
 1. Open a course in Canvas  
 2. Go to the 'Apps' tab in course Settings  
 3. Click 'View App Configurations'  
-4. Click 'Add App'  
-5. Configuration Type: select 'By URL'from the drop down list  
-6. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.  
-7. Consumer Key: leave empty  
-8. Shared Secret: threadz-v1  
-9. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).  
-
+4. Click 'Add App'
+5. Complete the LTI form  
+  1. Configuration Type: select 'By URL'from the drop down list  
+  2. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.  
+  3. Consumer Key: leave empty  
+  4. Shared Secret: threadz-v1  
+  5. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).  
+6. Click 'Submit'
 
 
 ////////////////////////////////////////////////////
