@@ -124,7 +124,7 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
 1. Open a course in Canvas  
 2. Go to the 'Apps' tab in course Settings  
 3. Click 'View App Configurations'  
-4. Click 'Add App'
+4. Click 'Add App'  
 5. Complete the LTI form  
   1. Configuration Type: select 'By URL'from the drop down list  
   2. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.  
@@ -145,7 +145,7 @@ The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualizat
 
 [IMSBasicLTI] (https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2)  
 Copyright (c) 2007 Andy Smith  
-The cody provided by Andy Smith creates a secure Oauth class to access the lti launch data.
+The code provided by Andy Smith creates a secure Oauth class to access the lti launch data.
 
 
 [D3.js](http://d3js.org/)  
