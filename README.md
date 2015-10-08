@@ -77,7 +77,7 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
   1. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).  
   2. complete the form  
     1. on the question 'Are you a current Canvas...' select 'Client'.  
-    2. for the question 'Oauth2 Redirect URI', make sure this is the same path as the directory where you placed the Threadz directory on the webserver.  
+    2. for the question 'Oauth2 Redirect URI', make sure this is the same path as where you placed the Threadz directory on the webserver.  
     3. all other questions should be self evident.  
   3. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.  
 
@@ -127,10 +127,10 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
   4. Click 'Add App'
   5. Complete the LTI form
     1. **Configuration Type:** select 'By URL'from the drop down list
-    2. **Name: enter 'Threadz:** Discussion Visualization Tool' or another name that makes sense to you.
+    2. **Name:** enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.
     3. **Consumer Key:** leave empty
     4. **Shared Secret:** threadz-v1
-    5. **Config URL:** paste the url link to the config-threadz.xml file (Getting Started step 6).
+    5. **Config URL:** paste the url link to the config-threadz.xml file ([Getting Started step 6](#getting-started-installation)).
   6. Click 'Submit'
 
 
@@ -143,7 +143,7 @@ Dr. Shane Dawson etal.
 The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for Threadz.
 
 
-[IMSBasicLTI] (https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2)  
+[IMSBasicLTI](https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2)  
 Copyright (c) 2007 Andy Smith  
 The code provided by Andy Smith creates a secure Oauth class to access the lti launch data.
 
