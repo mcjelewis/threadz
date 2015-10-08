@@ -121,16 +121,16 @@ Threadz uses the jQuery UI themes.  You can use the jQuery Themeroller to create
 ////////////////////////////////////////////////////
 
 Canvas has a user guide about how to set up an LTI : https://guides.instructure.com/m/4214/l/74559-how-do-i-configure-an-external-app-for-an-account-using-a-url  
-1. Open a course in Canvas  
-2. Go to the 'Apps' tab in course Settings  
-3. Click 'View App Configurations'  
-4. Click 'Add App'  
+1. Open a course in Canvas
+2. Go to the 'Apps' tab in course Settings
+3. Click 'View App Configurations'
+4. Click 'Add App'
 5. Complete the LTI form
-  1. Configuration Type: select 'By URL'from the drop down list  
-  2. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.  
-  3. Consumer Key: leave empty  
-  4. Shared Secret: threadz-v1  
-  5. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).  
+  1. Configuration Type: select 'By URL'from the drop down list
+  2. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.
+  3. Consumer Key: leave empty
+  4. Shared Secret: threadz-v1
+  5. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).
 6. Click 'Submit'
 
 
