@@ -1,0 +1,251 @@
+
+.link {
+  /*stroke: #000;*/
+  stroke: #888;
+  stroke-width: 1.5px;
+}
+.node {
+  cursor: move;
+  /*fill: #c6dbef;*/
+  /*fill: #e6550d;*/
+  /*stroke: #000;
+  stroke-width: .5px;*/
+  fill: #444;
+}
+
+.node.fixed {
+  /*fill: #e6550d;*/
+  fill: #FD8D3C;
+}
+
+.path {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.networkBlue{
+  fill: #c6dbef;
+}
+.networkBlue.fixed{
+  fill: #e6550d;
+}
+.networkOrange{
+  fill: #e6550d;
+  /*fill: #FD8D3C;*/
+}
+
+.networkOrange.fixed{
+  fill: #c6dbef;
+}
+/*
+.node {
+  cursor: move;
+
+}
+
+.node.fixed {
+  fill: #e6550d;
+}
+
+.path {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+circle.networkBlue {
+  cursor: move;
+  fill: #c6dbef;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.networkBlue.fixed {
+  fill: #e6550d;
+}
+*/
+
+#inner-details {
+  font-size:12px;
+}
+
+span.close {
+	color:#FF5555;
+	cursor:pointer;
+	font-weight:bold;
+	margin-left:3px;
+}
+
+span.name {
+  cursor: pointer;
+}
+
+
+
+
+.links {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+#licensing {
+  fill: green;
+}
+
+.links.licensing {
+  stroke: green;
+}
+
+.links.resolved {
+  stroke-dasharray: 0,2 1;
+}
+
+
+
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff; */
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff; 
+}
+.chordUser {
+  font: 12px sans-serif;
+  pointer-events: none;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-shadow: none;
+}
+
+rect {
+  fill: none;
+  pointer-events: all;
+}
+
+pre {
+  font-size: 18px;
+}
+
+line {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.string, .regexp {
+  color: #f39;
+}
+
+.keyword {
+  color: #00c;
+}
+
+.comment {
+  color: #555;
+}
+
+.number {
+  color: #369;
+}
+
+.class, .special {
+  color: #1181B8;
+}
+
+.statTable{
+  margin-top: 20px;
+}
+
+#tooltip {
+  color: white;
+  opacity: .9;
+  background: #333;
+  padding: 5px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 10;
+  visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+#circle circle {
+  fill: none;
+  pointer-events: all;
+}
+path.group {
+  fill-opacity: .8;
+}
+path.chord {
+  fill-opacity: .8;
+  stroke: #000;
+  stroke-width: .25px;
+}
+#circle:hover path.fade {
+  display: none;
+}
+      
+svg {
+  font: 10px sans-serif;
+}
+
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.matrixOrder{
+    float: left;
+    margin-left: 300px;
+    padding-left: 300px;
+}
+.matrixHeatmap{
+  float:right;
+    padding-left: 500px;
+}
+#topNav{
+  float:right;
+}
+#beta{
+font-family: 'Volkhov', serif;
+}
+
+
+/* Timeline Chart */
+#timeBar{
+    margin-right: 30px;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
