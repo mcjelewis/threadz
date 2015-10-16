@@ -97,7 +97,7 @@ if( ini_get('allow_url_fopen') ) {
                 $_SESSION['dataPage'] = 'd2l-data.php';
                 break;
             default:
-                echo "Please ask Admin set LMS in Threadz launch.";
+                echo "Please ask Admin to set LMS in Threadz launch.";
                 break;
         }
  
