@@ -148,6 +148,7 @@ if($_SESSION['countOfTopic'] > 0 ){
                 <div id="genStats">
                     <div id="tPart"></div>
                     <div id="tPost"></div>
+                    <div id="tDeleted"></div>
                     <div id="tThread"></div>
                 </div>  
                 <div id="netdensity"></div>

@@ -62,66 +62,60 @@ function d3Data($topic_id){
 
     //step through the view (post) data.  collect and organize the data into the link and node arrays for discussion
     foreach($jsonData['view'] as $view){
-        //removed deleted posts out of the mix for now. Current state is removing all subpost if main post gets deleted.
-        if($view['deleted'] != 'true'){
-            $reply_to = $_SESSION['topics'][$topic_id]['author']['id'];
-            //the author id is not always set, default to 0 instead of null
-            if($reply_to == null){
-                $target = 0;
-            }else{
-                $target = $_SESSION[$array_title]['nodes'][$reply_to]['source'];
-            }
-            $posted_by = $view['user_id'];
+        $reply_to = $_SESSION['topics'][$topic_id]['author']['id'];
+        //the author id is not always set, default to 0 instead of null
+        if($reply_to == null){
+            $target = 0;
+        }else{
+            $target = $_SESSION[$array_title]['nodes'][$reply_to]['source'];
+        }
+        $posted_word_count = 0;
+//if a reply is deleted, Canvas removes the user_id from the data.  While not ideal, use the editor_id in its place as a surrogate for the user_id. Otherwise the post becomes orphaned.
+        if($view['deleted'] == 'true'){
             $edited_by = $view['editor_id'];
-            //if a post is deleted, Canvas removes the user_id from the data.  Use the editor_id in its place as a surrogate for the user_id. Otherwise the connection to a person is lost and the post becomes orphaned
-            //if($view['deleted'] == 'true'){
-            //    $sourced_by = $edited_by;
-            //}else{
-            //    $sourced_by = $posted_by;
-            //}
-            $message_id = $view['id'];
-            $_SESSION['postNum']++;
-            $posted_word_count = 0;
+            $posted_by = $edited_by;
+            $deleted_by = $view['deleted'];
+        }else{
+            $posted_by = $view['user_id'];
             $posted_word_count += str_word_count(strip_tags($view['message']));
-            $arrReply = array(
-                'message_id' => $view['id'],
-                'posted_by' => $posted_by,
-                'edited_by' => $edited_by,
-                'posted_message' => $view['message'],
-                'posted_word_count' => $posted_word_count,
-                'posted_on' => $view['created_at'],
-                'reply_to' => $reply_to,
-                'source' => $_SESSION[$array_title]['nodes'][$posted_by]['source'],
-                'target' => $_SESSION[$array_title]['nodes'][$posted_by]['source'],
-                //'source' => $_SESSION[$array_title]['nodes'][$sourced_by]['source'],
-                //'target' => $_SESSION[$array_title]['nodes'][$sourced_by]['source'],
-                'subthread' => 0,
-                'deleted' => $view['deleted'],
-                'thread' => $view['id']
-            );
-            $i=0;
+            $deleted_by = 'false';
+        }
+        $message_id = $view['id'];
+        $_SESSION['postNum']++;
+        $arrReply = array(
+            'message_id' => $view['id'],
+            'posted_by' => $posted_by,
+            'edited_by' => $edited_by,
+            'posted_message' => $view['message'],
+            'posted_word_count' => $posted_word_count,
+            'posted_on' => $view['created_at'],
+            'reply_to' => $reply_to,
+            'source' => $_SESSION[$array_title]['nodes'][$posted_by]['source'],
+            'target' => $_SESSION[$array_title]['nodes'][$posted_by]['source'],
+            'subthread' => 0,
+            'deleted' => $deleted_by,
+            'thread' => $view['id']
+        );
+        $i=0;
+
     
-        
-            //Enter post data into saved Session arrays
-            setPostData2Session($array_title, $reply_to, $posted_by, $arrReply, $topic_id, $message_id);
-            //if post has replies, collect reply/posts with recursive replyPost() function
-            //example: replyPosts($replies, $thread, $reply_to, $array_title, $topic_id, $post_count)
-            if(array_key_exists('replies', $view)){
-                for($a=0; $a<count($view['replies']); $a++){
-                    replyPosts($view['replies'][$a], $view['id'], $posted_by, $array_title, $topic_id, $message_id);
-                }
+        //Enter post data into saved Session arrays
+        setPostData2Session($array_title, $reply_to, $posted_by, $arrReply, $topic_id, $message_id);
+        //if post has replies, collect reply/posts with recursive replyPost() function
+        //example: replyPosts($replies, $thread, $reply_to, $array_title, $topic_id, $post_count)
+        if(array_key_exists('replies', $view)){
+            for($a=0; $a<count($view['replies']); $a++){
+                replyPosts($view['replies'][$a], $view['id'], $posted_by, $array_title, $topic_id, $message_id);
             }
-            
-            //totals array, count of participants
-            $_SESSION[$array_title]['totals']['total_word_count'] =+ $_SESSION['arrTopics'][$topic_id]['topic_word_count'];
-            $_SESSION[$array_title]['totals']['total_threads']++;
-            if($view['deleted'] == 'true') $_SESSION[$array_title]['totals']['total_deleted']++;
-            
-            ////save the created at date of post
-            //$_SESSION[$array_title]['timeline']['datetime'][$view['created_at']] = array($view['created_at'] => $view['created_at'], 'count' => 1) ;
         }
         
+        //totals array, count of participants
+        $_SESSION[$array_title]['totals']['total_word_count'] =+ $_SESSION['arrTopics'][$topic_id]['topic_word_count'];
+        $_SESSION[$array_title]['totals']['total_threads']++;
         if($view['deleted'] == 'true') $_SESSION[$array_title]['totals']['total_deleted']++;
+        
+        ////save the created at date of post
+        //$_SESSION[$array_title]['timeline']['datetime'][$view['created_at']] = array($view['created_at'] => $view['created_at'], 'count' => 1) ;
     }
     //creates and saves into the timeline array ($_SESSION[$array_title]['timeline']['date]) the daily post counts
     setDailyCount2Session($_SESSION[$array_title]['timeline']['datetime'], $array_title);
@@ -137,18 +131,19 @@ function d3Data($topic_id){
 //                        recursive function that steps through the Canvas json discussion API data.
 //  Used By: d3Data()
 function replyPosts($reply, $thread, $reply_to, $array_title, $topic_id, $message_id){
-    $posted_by = $reply['user_id'];
     $edited_by = $reply['editor_id'];
-    //if a reply is deleted, Canvas removes the user_id from the data.  Use the editor_id in its place as a surrogate for the user_id. Otherwise the connection to a person is lost and the post becomes orphaned
+    $posted_word_count = 0;
+    //if a reply is deleted, Canvas removes the user_id from the data.  While not ideal, use the editor_id in its place as a surrogate for the user_id. Otherwise the post becomes orphaned.
     if($reply['deleted'] == 'true'){
-        $sourced_by = $edited_by;
+        $edited_by = $reply['editor_id'];
+        $posted_by = $edited_by;
+        $_SESSION[$array_title]['totals']['total_deleted']++;
     }else{
-        $sourced_by = $posted_by;
+        $posted_by = $reply['user_id'];
+        $posted_word_count += str_word_count(strip_tags($reply['message']));
     }
     $message_id = $reply['id'];
     $_SESSION['postNum']++;
-    $posted_word_count = 0;
-    $posted_word_count += str_word_count(strip_tags($reply['message']));
     $arrReply = array(
         'message_id' => $reply['id'],
         'posted_by' => $posted_by,
@@ -157,7 +152,7 @@ function replyPosts($reply, $thread, $reply_to, $array_title, $topic_id, $messag
         'posted_word_count' => $posted_word_count,
         'posted_on' => $reply['created_at'],
         'reply_to' => $reply_to,
-        'source' => $_SESSION[$array_title]['nodes'][$sourced_by]['source'],
+        'source' => $_SESSION[$array_title]['nodes'][$posted_by]['source'],
         'target' => $_SESSION[$array_title]['nodes'][$reply_to]['source'],
         'subthread' => $reply['parent_id'],
         'deleted' => $reply['deleted'],
