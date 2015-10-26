@@ -32,6 +32,11 @@ if(isset($_COOKIE['Threadz'])){
     <script type="text/javascript" src="<?php echo $domainThreadz ?>/js/d3-visuals.js"></script>-->
 
 </head>
+<script>
+   $(document).ready(function() {
+         $('#saveImage').show();
+   });
+</script>
 <body>
 <?php
     if(isset($_COOKIE['Threadz'])){

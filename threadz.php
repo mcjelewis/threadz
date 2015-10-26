@@ -247,6 +247,7 @@ if($_SESSION['countOfTopic'] > 0 ){
                             $('#networkDirected').append(makeForceDirected(d3data));
                             $('#nodeSize').val('sent');
                             $('#right-container').show();
+                            $('#saveImage').show();
                             break;
                         ////Due to an issue with the timing of the d3 rendering, the chord diagram needs to be created from its own page.
                         ////The function getComputedTextLength() is used within makeChodMatrix() on the d3-visulas.js page to calculate the length
@@ -260,14 +261,17 @@ if($_SESSION['countOfTopic'] > 0 ){
                         case 'timeline':
                             //$('#timeline').append(makeTimeline1(d3data));
                             $('#timeline').append(makeTimeline2(d3data));
+                            $('#saveImage').show();
                             break;
                         case 'matrix':
                             $('line').css({"stroke": "#fff", "stroke-width": ".5px"});
                             $('text.active').css({"fill": "red"});
                             $('#matrix').append(makeAdjMatrix(d3data));
+                            $('#saveImage').show();
                             break;
                         case 'statistics':
                             $('#statistics').append(makeStatistics(d3data));
+                            $('#saveImage').hide();
                             break;
                         case 'export':
                             //$('#export').append(makeExport(d3data));

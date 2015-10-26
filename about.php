@@ -21,6 +21,11 @@ session_start();
     <meta name="author" content="Matt Lewis">
     <meta name="robots" content="noindex,nofollow">
 </head>
+<script>
+   $(document).ready(function() {
+         $('#saveImage').hide();
+   });
+</script>
 <body>
 
    <div id="creditsbody">
