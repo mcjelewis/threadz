@@ -14,7 +14,9 @@ require_once("functions.php");
 $topic_id = $_SESSION['topic_id'];
 $domainThreadz = $_SESSION['domainThreadz'];
 $d3data = json_decode($_SESSION['discussionData'], '"');
+if(isset($_COOKIE['Threadz'])){
 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +33,9 @@ $d3data = json_decode($_SESSION['discussionData'], '"');
 
 </head>
 <body>
+<?php
+    if(isset($_COOKIE['Threadz'])){
+?>
         <div class='d3-visual'>
             <div id="chord">
                 <script>makeChordMatrix(<?php echo $_SESSION['discussionData']; ?>);</script>
@@ -42,6 +47,10 @@ $d3data = json_decode($_SESSION['discussionData'], '"');
             <p>Hover over the outer edge of the circle on a specific user to display the number of posts sent and recieved. Hover over the line that connects two students to see the count of posts from either direction.</p>
         </div>
         <br><a class='mini' target='_blank' href='<?php echo $d3data['topic']['url'] ?>'>go to Discussion</a>
-
+<?php
+    }else{
+        echo 'Expired Session, please reauthenticate Threadz.';
+    }
+?>
 </body>
 </html>
