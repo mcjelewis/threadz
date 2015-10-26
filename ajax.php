@@ -11,7 +11,7 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 session_start();
 require_once("functions.php");
-
+if(isset($_COOKIE['Threadz'])){
   $topic_id = $_POST['topic_id'];
   empty($_SESSION['d3_'.$topic_id]);
   unset($_SESSION['d3_'.$topic_id]);
@@ -26,7 +26,9 @@ require_once("functions.php");
   
   //send back to threadz.php
   echo $discussionData;
-
+}else{
+    echo 'Expired Session, please reauthenticate Threadz.';
+}
 ?>
 
 

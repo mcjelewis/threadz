@@ -12,7 +12,7 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 session_destroy();
 ini_set('session.gc_maxlifetime', 1800);
-setcookie("Treadz",time(),time()+1800);
+setcookie("Threadz",time(),time()+1800);
 session_start();
 error_reporting(E_ALL); ini_set('display_errors', 'On');
 //////////////////////////////////////////////////////
@@ -37,9 +37,8 @@ $lms = 'canvas';
 //Set the varibles needed to collect the API discussion data using the users own access token.
 //Client ID and Key were provided by Canvas (http://instructure.github.io/) after submitting
 //a Developer Key Request form (https://docs.google.com/a/instructure.com/forms/d/1C5vOpWHAAl-cltj2944-NM0w16AiCvKQFJae3euwwM8/viewform).
-//The Client ID should be added as numberic, the Key as a string.
-$_SESSION['client_id'] = "[Your LTI Client ID Here]-remove quotes";
-$_SESSION['client_secret'] = "[Your LTI Key Here]";
+$_SESSION['client_id'] = 100000000000261;
+$_SESSION['client_secret'] = "oiGO34b3UFrd4wifWWfSLDxVkH9A1qvoDY3KUCOVHLP04ZlOAQTpcpnFYRdPAl3w";
 
 //////////////////////////////////////////////////////
 //Set other variables used in the data collection process
@@ -97,7 +96,7 @@ if( ini_get('allow_url_fopen') ) {
                 $_SESSION['dataPage'] = 'd2l-data.php';
                 break;
             default:
-                echo "Please ask Admin to set LMS in Threadz launch.";
+                echo "Please ask Admin set LMS in Threadz launch.";
                 break;
         }
  

@@ -181,6 +181,7 @@ if($_SESSION['countOfTopic'] > 0 ){
         <h3>No Discussion Topics Avaliable</h3>
         <p>Before you can use Threadz, there must be at minimum of one published disucssion in your course with one or more submitted posts.  Please check to make sure that your course meets these requirments.</p>
     </div>
+    <?php print_r($_COOKIE['Threadz']) ?>
     <script>
         //jquery submit Discussion Topic choice on change
         $(function() {
@@ -203,20 +204,23 @@ if($_SESSION['countOfTopic'] > 0 ){
                            data: $("#formTopics").serialize(), // serializes the form's elements.
                            dataType: 'json',
                            success: function(data){
-                                console.log(data);
-                                d3data = data;
-                                $('#networkDirected').html(d3data);
-                                $('#dataTest').html(d3data);
-                                $('#networkDirected').append(makeForceDirected(d3data));
-                                //$('#saveImage').html('<button id="save">Save as Image</button>');
-                                $('#welcome').hide();
-                                $('#networkSize').show();
-                                $('#matrixOrder').show();
-                                $('#vis_container').tabs('option', 'disabled',[]);
-                                $('#vis_container').tabs({active: 0});
-                                $('.discussionLink').html("<a class='mini' target='_blank' href='" + d3data.topic.url + "'>go to Discussion</a>");
-                                $('#saveImage').show();
-                                
+                                if(data == "Expired Session, please reauthenticate Threadz."){
+                                    console.log(data)
+                                    $('topics').html(data);
+                                }else{
+                                    d3data = data;
+                                    $('#networkDirected').html(d3data);
+                                    $('#dataTest').html(d3data);
+                                    $('#networkDirected').append(makeForceDirected(d3data));
+                                    //$('#saveImage').html('<button id="save">Save as Image</button>');
+                                    $('#welcome').hide();
+                                    $('#networkSize').show();
+                                    $('#matrixOrder').show();
+                                    $('#vis_container').tabs('option', 'disabled',[]);
+                                    $('#vis_container').tabs({active: 0});
+                                    $('.discussionLink').html("<a class='mini' target='_blank' href='" + d3data.topic.url + "'>go to Discussion</a>");
+                                    $('#saveImage').show();
+                                }
                            }
                            //dataType: 'json',
                            //encode: true

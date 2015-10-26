@@ -15,7 +15,7 @@
     //By collecting all the data, there is no need to keep the access token saved into SESSION.
 
     if($current_token){
-        $urlTopics = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics.json?per_page=50&access_token=". $current_token;
+        $urlTopics = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics?per_page=50&access_token=". $current_token;
         //$urlTopics = ".$domainCanvas."/test/data/topics.json";
         $dataTopics = file_get_contents($urlTopics);
         $jsonTopics = json_decode($dataTopics, true);
@@ -30,6 +30,8 @@
         foreach($jsonTopics as $topic){
             $topic_id = $topic['id'];
             $topic_title = $topic['title'];
+            $_SESSION['topicList'][$topic_id] = array('topic_id' => $topic_id, 'topic_title'=> $topic_title, 'topic_subentry_count' => $topic['discussion_subentry_count'], 'published'=> $topic['published']);
+            
             $urlTopic = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics/".$topic_id."/view.json?access_token=". $current_token;
             //$urlTopic = "".$domainCanvas."/test/data/posts.json";
             $dataPosts = file_get_contents($urlTopic);
@@ -54,9 +56,8 @@
             
             //save abridged topic data into SESSION
             $_SESSION['arrTopics'] = $arrTopic;
-            
             //create HTML display Topic list for published discussions and with discussions with one or more posts.
-            if($arrTopic[$topic_id]['published'] == true && $arrTopic[$topic_id]['topic_subentry_count'] >0){
+            if($topic['published'] == true && $topic['discussion_subentry_count']>0){
                 $select_list_option.= "<option value='".$topic_id."'>".$topic_title."</option>";
                 //count the number of topics that are published and have more than one post, this count determins what
                 //initially gets displayed on threadz.php
