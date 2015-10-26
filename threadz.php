@@ -181,7 +181,6 @@ if($_SESSION['countOfTopic'] > 0 ){
         <h3>No Discussion Topics Avaliable</h3>
         <p>Before you can use Threadz, there must be at minimum of one published disucssion in your course with one or more submitted posts.  Please check to make sure that your course meets these requirments.</p>
     </div>
-    <?php print_r($_COOKIE['Threadz']) ?>
     <script>
         //jquery submit Discussion Topic choice on change
         $(function() {
@@ -301,22 +300,22 @@ if($_SESSION['countOfTopic'] > 0 ){
     </script>
     <script>
         (function ($) {
-    $.extend($.fn, {
-        makeCssInline: function () {
-            this.each(function (idx, el) {
-                var style = el.style;
-                var properties = [];
-                for (var property in style) {
-                    if ($(this).css(property)) {
-                        properties.push(property + ':' + $(this).css(property));
-                    }
+            $.extend($.fn, {
+                makeCssInline: function () {
+                    this.each(function (idx, el) {
+                        var style = el.style;
+                        var properties = [];
+                        for (var property in style) {
+                            if ($(this).css(property)) {
+                                properties.push(property + ':' + $(this).css(property));
+                            }
+                        }
+                        this.style.cssText = properties.join(';');
+                        $(this).children().makeCssInline();
+                    });
                 }
-                this.style.cssText = properties.join(';');
-                $(this).children().makeCssInline();
             });
-        }
-    });
-}(jQuery));
+        }(jQuery));
 
         //http://d3export.housegordon.org/
         //https://github.com/agordon/d3export_demo
