@@ -35,6 +35,12 @@ session_start();
  <div id="creditsbody">
     <h3>Discussion Topic List</h3>
     <p>Select the title of a discussion from the drop down list above the chart tabs.  The list includes all published discussions that have one or more posts submitted to it.</p>
+    
+    <h3>Saving Graphics</h3>
+    <p>On each of the charts there are buttons to save the graphic as a SVG, PDF or PNG file types. At this time, the graphics do not mantain the full set of formatting added to what you see on screen. While not perfect, the saved image is a good start.</p>
+    
+    
+  <h2>Charts and Graphs</h2>
   <h3>Network</h3> 
     <p>The social network visualizations show typical line/node graphs that connects users together. Each node represents a different user in the discussion and each line represents a post from or to another user. The relative size of the circles (nodes) can be changed to represent the value selected for either the number of posts sent, posts received, total posts, total word count of posts sent, and the average word count of posts sent. These charts are useful to quickly discern any individual or group that is isolated or conversly who are the power users within the forum.</p>
     <p>The nodes in this chart are movable to help single out individuals or groups when the network of connections gets too complex visually. To manipulate a node, click and drag a node circle to another part of the page where it will then be locked into that location until being double clicked.</p>
