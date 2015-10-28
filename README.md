@@ -54,7 +54,7 @@ The role permissions for Threadz are not locked down.  Anyone with access to the
 ##    Licensing ##
 ////////////////////////////////////////////////////
 
-Threads by Eastern Washington University - Instructional Technology is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+Threadz by Eastern Washington University - Instructional Technology is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 
 
