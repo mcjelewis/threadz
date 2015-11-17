@@ -37,7 +37,7 @@
             $dataPosts = file_get_contents($urlTopic);
             $jsonData = json_decode($dataPosts, true);
     
-            //save individual discussion topic post data into SESSION using the topic id as the variable name
+            //save individual discussion topic post data into SESSION using the topic id as the key name
             $_SESSION['json_'.$topic_id] = $jsonData;
             $arrTopic[$topic_id] = array(
                 'json' => $jsonData,
