@@ -1,0 +1,149 @@
+======================================
+Format of LMS data for Threadz
+======================================
+The data coming out of the LMS needs to be formatted in a specific way in order to use the functions that process the data for the D3 graphic displays. The php array titled 'arrTopic' holds the information about a discussion topic as well as the discussion content (participants, posts, replies) in SESSION. The individual discussion topic data is saved into the array using the topic id as the key name.
+
+
+
+======================================
+Data Processing Pages:
+======================================
+At launch, all discussion data is saved into a SESSION variable that is process later to prep for use with the D3 library.  The D3 library further preps the data depending
+on the graphic/chart that is requested.
+
+canvas-data.php -> This page makes the calls to the API and collects all the general information about the discussion topic and the discussion content. The data is dumped into the array 'arrTopic'. This page also saves into SESSION the drop down list of discussions in the course used on threadz.php.
+                    
+functions.php -> d3Data() -> This function steps through an individual discussion topic (participants, posts, replies) and prepares the data for use with the D3 library. A new array is saved into SESSION as d3_[topic id].
+
+ajax.php -> This page initiates the d3Data() function.
+
+
+
+
+======================================
+EXAMPLES:
+======================================
+Example of the array 'arrTopic' created from canvas-data.php
+-------------------------------------
+    arrTopic[topic id] = array(
+        'json' => jsonData,
+        'topic_id'=> topic id,
+        'published'=> topic published,
+        'url'=> topic url,
+        'topic_title' => topic title,
+        'message' => topic message,
+        'author_id' => topic author id,
+        'topic_url' => topic url,
+        'assignment_id' => topic assignment_id,
+        'discussion_type' => topic discussion type,
+        'topic_subentry_count' => topic discussion subentry count,
+        'topic_word_count' => 0,
+    );
+-------------------------------------
+
+Example of the json discussion content data coming from Canvas. This is saved as 'json' into array 'arrTopic'.
+Note how the deleted post is formatted. The data for a deleted post out of Canvas is lacking the 'user_id' and 'message' fields and has two additional fields ('editor_id' and 'deleted').
+-------------------------------------    
+    jsonData = {           
+        "participants": [
+            {
+            "id": 1377805,
+            "display_name": "Matt Lewis",
+            "avatar_image_url": "https://canvas.ewu.edu/images/thumbnails/22438792/lErTXiCrKeJQR00ytI2hnaFvadp4irxmiPo83D2w",
+            "html_url": "https://canvas.ewu.edu/courses/834960/users/1377805"
+            },
+            {
+            "id": 3408482,
+            "display_name": "Murray Slaughter",
+            "avatar_image_url": "https://canvas.ewu.edu/images/thumbnails/23379263/7uDV2CkaKn6Lt90LQe14PYrSQfly9MeHEsRbk5cI",
+            "html_url": "https://canvas.ewu.edu/courses/834960/users/3408482"
+            },
+            {
+            "id": 3408484,
+            "display_name": "Ted Baxter",
+            "avatar_image_url": "https://canvas.ewu.edu/images/thumbnails/23379196/3HoP7JdvcnbIrUicc2iOjibbyO9w93tU62jQAgDf",
+            "html_url": "https://canvas.ewu.edu/courses/834960/users/3408484"
+            }
+        ],
+        "view": [
+            {
+            "created_at": "2014-06-05T19:04:59Z",
+            "id": 4193330,
+            "parent_id": null,
+            "rating_count": null,
+            "rating_sum": null,
+            "updated_at": "2014-06-05T19:04:59Z",
+            "user_id": 3408484,
+            "message": "<p class=\"p1\">I've just been handed a bulletin: \"You have something on your front tooth!\"</p>"
+            },
+            {
+            "created_at": "2014-06-05T19:05:29Z",
+            "id": 4193333,
+            "parent_id": null,
+            "rating_count": null,
+            "rating_sum": null,
+            "updated_at": "2014-06-05T19:05:29Z",
+            "user_id": 3408484,
+            "message": "<p class=\"p1\">Say, Murray, I just read this item I think we should use. It's about a man who went on TV to make a plea to send Turkeys to convicts.</p>",
+            "replies": [
+                {
+                "created_at": "2014-06-05T19:14:26Z",
+                "id": 4193374,
+                "parent_id": 4193333,
+                "rating_count": null,
+                "rating_sum": null,
+                "updated_at": "2014-06-05T19:14:26Z",
+                "user_id": 3408482,
+                "message": "<p>For pets or for dinner?</p>",
+                "replies": [
+                    {
+                    "created_at": "2014-06-05T19:15:03Z",
+                    "id": 4193377,
+                    "parent_id": 4193374,
+                    "rating_count": null,
+                    "rating_sum": null,
+                    "updated_at": "2014-06-05T19:15:03Z",
+                    "user_id": 3408484,
+                    "message": "<p class=\"p1\">I don't know! I think it was in \"Ar-Kansas.\"</p>",
+                    "replies": [
+                        {
+                        "created_at": "2014-06-05T19:15:49Z",
+                        "id": 4193381,
+                        "parent_id": 4193377,
+                        "rating_count": null,
+                        "rating_sum": null,
+                        "updated_at": "2014-06-05T19:15:49Z",
+                        "user_id": 3408482,
+                        "message": "<p>Yeah, I think they're doing the same thing in Arkansas too.</p>",
+                        "replies": [
+                            {
+                            "created_at": "2014-06-05T19:16:16Z",
+                            "id": 4193383,
+                            "parent_id": 4193381,
+                            "rating_count": null,
+                            "rating_sum": null,
+                            "updated_at": "2014-06-05T19:16:16Z",
+                            "user_id": 3408484,
+                            "message": "<p class=\"p1\">How do you like that! It's spreading from state to state!</p>"
+                            }
+                        ]
+                        }
+                    ]
+                    }
+                ]
+                }
+            ]
+            },
+            {
+            "created_at": "2015-10-02T15:06:12Z",
+            "editor_id": 1377805,
+            "id": 5762570,
+            "parent_id": null,
+            "rating_count": null,
+            "rating_sum": null,
+            "updated_at": "2015-10-21T20:21:27Z",
+            "deleted": true
+            }
+        ]
+    }
+-------------------------------------
