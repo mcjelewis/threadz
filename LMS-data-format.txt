@@ -11,7 +11,7 @@ Data Processing Pages:
 At launch, all discussion data is saved into a SESSION variable that is process later to prep for use with the D3 library.  The D3 library further preps the data depending
 on the graphic/chart that is requested.
 
-canvas-data.php -> This page makes the calls to the API and collects all the general information about the discussion topic and the discussion content. The data is dumped into the array 'arrTopic'. This page also saves into SESSION the drop down list of discussions in the course used on threadz.php.
+lms/canvas-data.php -> This page makes the calls to the API and collects all the general information about the discussion topic and the discussion content. The data is dumped into the array 'arrTopic'. This page also saves into SESSION the drop down list of discussions in the course used on threadz.php.
                     
 functions.php -> d3Data() -> This function steps through an individual discussion topic (participants, posts, replies) and prepares the data for use with the D3 library. A new array is saved into SESSION as d3_[topic id].
 
