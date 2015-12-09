@@ -27,6 +27,7 @@ $_SESSION['expire'] = time() + (30 * 60);
 //discussion board data via an API.  Development needs to be done on each LMS page to access the data and save it in the array
 //format used by the visualizations created in D3.
 //Set LMS and domain - uncomment the LMS used for this LTI
+$_SESSION['domainLMS'] = 'https://[your-canvas-url]';
 $lms = 'canvas';
 //$lms = 'moodle';
 //$lms = 'sakai';
@@ -37,8 +38,8 @@ $lms = 'canvas';
 //Set the varibles needed to collect the API discussion data using the users own access token.
 //Client ID and Key were provided by Canvas (http://instructure.github.io/) after submitting
 //a Developer Key Request form (https://docs.google.com/a/instructure.com/forms/d/1C5vOpWHAAl-cltj2944-NM0w16AiCvKQFJae3euwwM8/viewform).
-$_SESSION['client_id'] = 100000000000261;
-$_SESSION['client_secret'] = "oiGO34b3UFrd4wifWWfSLDxVkH9A1qvoDY3KUCOVHLP04ZlOAQTpcpnFYRdPAl3w";
+$_SESSION['client_id'] = 000; #change to client id numeric
+$_SESSION['client_secret'] = "[change to secret key proved by Canvas]";
 
 //////////////////////////////////////////////////////
 //Set other variables used in the data collection process
@@ -72,27 +73,22 @@ if( ini_get('allow_url_fopen') ) {
         switch($lms) {
             //Canvas
             case "canvas":
-                $_SESSION['domainLMS'] = 'https://canvas.ewu.edu';
                 $_SESSION['dataPage'] = 'canvas-data.php';
                 break;
             //Moodle
             case "moodle":
-                $_SESSION['domainLMS'] = '';
                 $_SESSION['dataPage'] = 'moodle-data.php';
                 break;
             //Sakai
             case "sakai":
-                $_SESSION['domainLMS'] = '';
                 $_SESSION['dataPage'] = 'sakai-data.php';
                 break;
             //Blackboard
             case "blackboard":
-                $_SESSION['domainLMS'] = '';
                 $_SESSION['dataPage'] = 'bb-data.php';
                 break;
             //Desire2Learn
             case "desire2learn";
-                $_SESSION['domainLMS'] = '';
                 $_SESSION['dataPage'] = 'd2l-data.php';
                 break;
             default:
