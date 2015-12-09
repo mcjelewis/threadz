@@ -39,7 +39,7 @@ $lms = 'canvas';
 //Client ID and Key were provided by Canvas (http://instructure.github.io/) after submitting
 //a Developer Key Request form (https://docs.google.com/a/instructure.com/forms/d/1C5vOpWHAAl-cltj2944-NM0w16AiCvKQFJae3euwwM8/viewform).
 $_SESSION['client_id'] = 000; #change to client id numeric
-$_SESSION['client_secret'] = "[change to secret key proved by Canvas]";
+$_SESSION['client_secret'] = "[change to secret key provided by Canvas]";
 
 //////////////////////////////////////////////////////
 //Set other variables used in the data collection process
