@@ -27,7 +27,7 @@ $_SESSION['expire'] = time() + (30 * 60);
 //discussion board data via an API.  Development needs to be done on each LMS page to access the data and save it in the array
 //format used by the visualizations created in D3.
 //Set LMS and domain - uncomment the LMS used for this LTI
-$_SESSION['domainLMS'] = 'https://[your-canvas-url]';
+$_SESSION['domainLMS'] = 'https://canvas.ewu.edu';
 $lms = 'canvas';
 //$lms = 'moodle';
 //$lms = 'sakai';
@@ -40,7 +40,9 @@ $lms = 'canvas';
 //a Developer Key Request form (https://docs.google.com/a/instructure.com/forms/d/1C5vOpWHAAl-cltj2944-NM0w16AiCvKQFJae3euwwM8/viewform).
 $_SESSION['client_id'] = 000; #change to client id numeric
 $_SESSION['client_secret'] = "[change to secret key provided by Canvas]";
-
+//////////////////////////////////////////////////////
+//set variable to the shared secret used when setting up the lti.
+$shared_secret = "threadz-v1";
 //////////////////////////////////////////////////////
 //Set other variables used in the data collection process
 //$current_token = 1;
@@ -59,12 +61,8 @@ require_once("ims-blti/blti.php");
 
 //The php script uses the server function 'allow_url_fopen' to collect the json data from the API data call.
 //In order for this tool to function, your web server settings for 'allow_url_fopen' will need to be set to 'on'.
-if( ini_get('allow_url_fopen') ) {
-    //set variable to the secret used when setting up the lti.
-    $secret = "threadz-v1";
-} else {
+if(ini_get('allow_url_fopen') !=1) {
     die('Your web server admin will need to edit the php.ini file. <br>allow_url_fopen is disabled - the php function file_get_contents() will not work.');
-
 }
  
 //////////////////////////////////////////////////////
@@ -97,18 +95,21 @@ if( ini_get('allow_url_fopen') ) {
         }
  
 //////////////////////////////////////////////////////
+
 //Authenticate LTI using ims-blti/blti.php
 if(isset($_REQUEST['lti_message_type'])) { 
     //Get BLTI class to do all the hard work (more explanation of these below)
     // - first parameter is the secret, which is required
     // - second parameter (defaults to true) tells BLTI whether to store the launch data is stored in the session ($_SESSION['_basic_lti_context'])
     // - third parameter (defaults to true) tells BLTI whether to redirect the user after successful validation
-    $context = new BLTI($secret, true, false);
+    $context = new BLTI($shared_secret, true, false);
     
     //Deal with results from BLTI class 
     if($context->complete){
         exit(); //True if redirect was done by BLTI class
     }
+    #testing returned lti
+    #print_r($context);
     
     //True if LTI request was verified
     if($context->valid) { 
