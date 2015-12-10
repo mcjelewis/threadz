@@ -74,13 +74,12 @@ The software is provided "AS IS", without warranty of any kind, express or impli
 //////////////////////////////////////////////
 
 **For Canvas:**  
-Generate Canvas developer key. For access to the API data, Canvas requires a developer key to be generated for each application.  
-  1. click the Dev Key Signup from the 'Canvas Dev & Friends' page ([http://instructure.github.io/](http://instructure.github.io/)).  
-  2. complete the form  
-    1. on the question 'Are you a current Canvas...' select 'Client'.  
-    2. for the question 'Oauth2 Redirect URI', make sure this is the same path as the directory where you placed the Threadz directory on the webserver.  
-    3. all other questions should be self evident.  
-  3. Canvas will respond with an email within a day or two. In their response you should find your new ID, Key, and URI.  
+Generate Canvas developer key. For access to the API data, Canvas requires a developer key to be generated for each application.
+
+The current process for the creation of Canvas developer keys is to have your Canvas admin generate them. The Canvas guides have a helpful description about the process ([https://guides.instructure.com/m/4214/l/441833-how-do-i-add-a-developer-key-for-an-account](https://guides.instructure.com/m/4214/l/441833-how-do-i-add-a-developer-key-for-an-account)).
+  1. When filling out the Dev Key form field 'Redirect URI', make sure this is identical to the directory path where Threadz is on the webserver.
+  2. The 'Icon URL' field will be https://<directory path>/images/threadz_icon.png
+  3. Be sure to use the client ID (ID) and not the tool ID added at the time the admin generates the key.  
 
 
 **For Moodle:** Not yet supported  
@@ -98,12 +97,14 @@ Generate Canvas developer key. For access to the API data, Canvas requires a dev
 2. Download treadz.zip.  
 3. Save Threadz directory onto the websever.  
 4. Generate Canvas developer key if you haven't already done so (see [Developer Key Generation](#developer-key-generation) ).  
-5. Edit the launch.php file. Edit the following variables found between lines 21-42.  
+5. Edit the launch.php file. Edit the following variables found between lines 21-45.  
     - $domainThreadz = [your server url]        
     - $domainLMS = [your LMS url]       
     - $lms = [your LMS]  
     - $client_id = [your ID]  
     - $client_secret = [your Key]  
+    - OPTIONAL
+        $shared_secret = [your Key]  
 6. Edit the config-threadz.xml file.  
     - There are three lines that need to be edited, all related to the path to your webserver. Modify lines for the launch_url, domain, and url properties with path to your server. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html  
 7. Move the lib/pl/svgDownload.pl file into your server's perl directory (typically the cgi-bin outside of the webserver directory in Apache). On the treadz.php page, check the directory path in the hidden form titled svgform to make sure it matches where the svgDownload.pl page has been placed. This file is what is used to save the visualizations out as pdf, png, or svg files. 
@@ -131,7 +132,7 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
   1. Configuration Type: select 'By URL'from the drop down list  
   2. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.  
   3. Consumer Key: leave empty  
-  4. Shared Secret: threadz-v1  
+  4. Shared Secret: threadz-v1  (option to change the shared secret on luanch.php)
   5. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).  
 6. Click 'Submit'
 
@@ -142,12 +143,12 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
 
 [SNAPP (Social Network Adapting Pedagogical Practice)](http://www.snappvis.org/)
 Dr. Shane Dawson etal.  
-The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for Threadz.
+The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar tool that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for Threadz.
 
 
 [IMSBasicLTI] (https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2)  
 Copyright (c) 2007 Andy Smith  
-The cody provided by Andy Smith creates a secure Oauth class to access the lti launch data.
+The code provided by Andy Smith creates a secure Oauth class to access the lti launch data.
 
 
 [D3.js](http://d3js.org/)  
