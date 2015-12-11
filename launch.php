@@ -36,10 +36,10 @@ $lms = 'canvas';
 
 //////////////////////////////////////////////////////
 //Set the varibles needed to collect the API discussion data using the users own access token.
-//Client ID and Key were provided by Canvas (http://instructure.github.io/) after submitting
-//a Developer Key Request form (https://docs.google.com/a/instructure.com/forms/d/1C5vOpWHAAl-cltj2944-NM0w16AiCvKQFJae3euwwM8/viewform).
-$_SESSION['client_id'] = 000; #change to client id numeric
-$_SESSION['client_secret'] = "[change to secret key provided by Canvas]";
+//CThe current process for the creation of Canvas developer keys is to have your Canvas admin generate them. The Canvas guides have a helpful description about the process (https://guides.instructure.com/m/4214/l/441833-how-do-i-add-a-developer-key-for-an-account).
+$_SESSION['client_id'] = 000;  //replace with your client id
+$_SESSION['client_secret'] = "Your Dev Key"; //replace with your key
+
 //////////////////////////////////////////////////////
 //set variable to the shared secret used when setting up the lti.
 $shared_secret = "threadz-v1";
@@ -95,49 +95,19 @@ if(ini_get('allow_url_fopen') !=1) {
         }
  
 //////////////////////////////////////////////////////
+//testing the returned data from lti launch
+    //foreach($_REQUEST as $key => $val){
+    //    echo $key ." = " . $val . "<br>";
+    //}
+//////////////////////////////////////////////////////
+//Course id provided back from lti launch data
+$_SESSION['courseID'] = $_REQUEST['custom_canvas_course_id'];
+$_SESSION['token_state_id'] = $_REQUEST['oauth_nonce'];
 
-//Authenticate LTI using ims-blti/blti.php
-if(isset($_REQUEST['lti_message_type'])) { 
-    //Get BLTI class to do all the hard work (more explanation of these below)
-    // - first parameter is the secret, which is required
-    // - second parameter (defaults to true) tells BLTI whether to store the launch data is stored in the session ($_SESSION['_basic_lti_context'])
-    // - third parameter (defaults to true) tells BLTI whether to redirect the user after successful validation
-    $context = new BLTI($shared_secret, true, false);
-    
-    //Deal with results from BLTI class 
-    if($context->complete){
-        exit(); //True if redirect was done by BLTI class
-    }
-    #testing returned lti
-    #print_r($context);
-    
-    //True if LTI request was verified
-    if($context->valid) { 
-        //Release the hounds!
-        //Course id provided back from lti launch data
-        $_SESSION['courseID'] = $_REQUEST['custom_canvas_course_id'];
-        $_SESSION['token_state_id'] = $_REQUEST['oauth_nonce'];
-    
-        //testing the returned data from lti launch
-        //foreach($_REQUEST as $key => $val){
-        //    echo $key ." = " . $val . "<br>";
-        //}
-        
-        //Get the token for the user
-        //redirects to the URI set in LTI
-        header('Location: '. $_SESSION['domainLMS'].'/login/oauth2/auth?client_id='.$_SESSION['client_id'].'&response_type=code&redirect_uri='.$_SESSION['domainThreadz'].'/tokenAuth.php&state='.$_SESSION['token_state_id']);
-        exit();
-    }else{
-        echo "Not a valid LTI request.<br><br>";
-        var_dump($context->message);
-    }
-}else{
-    //Not an LTI request, so either don't let this user in, or provide another way for them to authenticate, or show them only public content
-    echo "The requested LTI did not authenticate.";
-}
-
-
-
+//Get the token for the user
+//redirects to the URI set in LTI
+header('Location: '. $_SESSION['domainLMS'].'/login/oauth2/auth?client_id='.$_SESSION['client_id'].'&response_type=code&redirect_uri='.$_SESSION['domainThreadz'].'/tokenAuth.php&state='.$_SESSION['token_state_id']);
+exit();
 
 
 
