@@ -15,19 +15,22 @@ ini_set('session.gc_maxlifetime', 1800);
 setcookie("Threadz",time(),time()+1800);
 session_start();
 error_reporting(E_ALL); ini_set('display_errors', 'On');
-//////////////////////////////////////////////////////
-//Set LIT domain
-//The domainThreadz variable needs to match the URI provided in the original LTI form. Any redirects from the OAuth2 process must use this domain.
-$domainThreadz = "https://threadz.ewu.edu";
-$_SESSION['domainThreadz'] = $domainThreadz;
 $_SESSION['expire'] = time() + (30 * 60);
+
+//////////////////////////////////////////////////////
+//Set LTI domain
+//The domainThreadz variable needs to match the URI provided in the original LTI form. Any redirects from the OAuth2 process must use this domain.
+$_SESSION['domainThreadz'] = "https://threadz.ewu.edu";
+
+//If you are going through a proxy, you can add that here, otherwise leave blank.
+$_SESSION['proxy'] = '';
 
 //////////////////////////////////////////////////////
 //In it's current state, Threadz does not support other LMS platforms besides Instructure's Canvas.  Each LMS needs to be able to access
 //discussion board data via an API.  Development needs to be done on each LMS page to access the data and save it in the array
 //format used by the visualizations created in D3.
-//Set LMS and domain - uncomment the LMS used for this LTI
-$_SESSION['domainLMS'] = 'https://canvas.ewu.edu';
+
+//Set LMS - uncomment the LMS used for this LTI
 $lms = 'canvas';
 //$lms = 'moodle';
 //$lms = 'sakai';
@@ -61,7 +64,7 @@ require_once("ims-blti/blti.php");
 
 //The php script uses the server function 'allow_url_fopen' to collect the json data from the API data call.
 //In order for this tool to function, your web server settings for 'allow_url_fopen' will need to be set to 'on'.
-if(ini_get('allow_url_fopen') !=1) {
+if(!ini_get('allow_url_fopen')) {
     die('Your web server admin will need to edit the php.ini file. <br>allow_url_fopen is disabled - the php function file_get_contents() will not work.');
 }
  
@@ -103,6 +106,7 @@ if(ini_get('allow_url_fopen') !=1) {
 //Course id provided back from lti launch data
 $_SESSION['courseID'] = $_REQUEST['custom_canvas_course_id'];
 $_SESSION['token_state_id'] = $_REQUEST['oauth_nonce'];
+$_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_return_url'], PHP_URL_HOST);
 
 //Get the token for the user
 //redirects to the URI set in LTI

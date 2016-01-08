@@ -17,7 +17,10 @@
     if($current_token){
         $urlTopics = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics?per_page=50&access_token=". $current_token;
         //$urlTopics = ".$domainCanvas."/test/data/topics.json";
+        //NOTE: There is an issue with Sonicwall and the basic file_get_contents() function.  If you are using Sonicwall you will want to look at this thread at php bugs: https://bugs.php.net/bug.php?id=40197
         $dataTopics = file_get_contents($urlTopics);
+        //$dataTopics = file_get_contents($urlTopics);
+        $dataTopics = connectCanvasAPI($urlTopics,'','Get',$_SESSION['proxy']);
         $jsonTopics = json_decode($dataTopics, true);
         
         //Save json Data of all course discussion topics into SESSION

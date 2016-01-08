@@ -5,9 +5,24 @@
 //  Organization: Eastern Washington University - Instructional Technology
 //  Copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
 //  Version: 1.0
-//  Used by: launch.php, ajax.php
+//  Used by: launch.php, ajax.php, tokenAuth.php, canvas-data.php
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+//  Function Description: Makes the connection to the Canvas API for either post or get. Returns results.
+//  Called From: tokenAuth.php, canvas-data.php
+function connectCanvasAPI($token_url,$token_data,$method,$proxy){
+    $token_options = array(
+        // use key 'http' even if you send the request to https://...
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => $method,
+            'content' => http_build_query($token_data),
+            'proxy' => $proxy,
+        ),
+    );
+    $context  = stream_context_create($token_options);
+    $result = file_get_contents($token_url, false, $context);
+    return $result;
+}
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //  Function Description: Creates the data array to be used by D3js. Steps through the LMS post data creating nodes and links.
