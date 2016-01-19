@@ -48,6 +48,7 @@ if($_SESSION['countOfTopic'] > 0 ){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?php echo $domainThreadz ?>/lib/js/jquery/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="<?php echo $domainThreadz ?>/lib/js/jquery/jquery.tableToCSV.js"></script>
     <script type="text/javascript" src="<?php echo $domainThreadz ?>/lib/js/jquery/jquery.inlineStyler.min.js"></script>
     <!--[if !IE]> -->
         <script type="text/javascript" async src="<?php echo $domainThreadz ?>/lib/js/jquery/excanvas.min.js"></script>
@@ -86,12 +87,14 @@ if($_SESSION['countOfTopic'] > 0 ){
                 <li><a href="#timeline"><span>Timeline</span></a></li>
                 <li><a href="#matrix"><span>Matrix</span></a></li>
                 <li><a href="#statistics"><span>Statistics</span></a></li>
+                <li><a href="#dataset"><span>Data Set</span></a></li>
                 <!-- <li><a href="#stream"><span>Timestream</span></a></li>-->
                 <!-- <li><a href="#cloud"><span>Word Cloud</span></a></li>-->
-                <!-- <li><a href="#export"><span>Export</span></a></li>-->
-                <li><a href="about.php"><span>About</span></a></li>
+                <!-- <li><a href="about.php"><span>About</span></a></li>-->
+                <!-- <li><a href="help.php"><span>Help</span></a></li>-->
+                <!-- <li><a href="roadmap.php"><span>Road Map</span></a></li>-->
+                
                 <li><a href="help.php"><span>Help</span></a></li>
-                <li><a href="roadmap.php"><span>Road Map</span></a></li>
             </ul>
             <div id="network">
                 <div id='networkSize'>Size by:
@@ -151,17 +154,18 @@ if($_SESSION['countOfTopic'] > 0 ){
                     <div id="tDeleted"></div>
                     <div id="tThread"></div>
                 </div>  
-                <div id="netdensity"></div>
-                <br/><div id="dataGrid" class="statTable"></div>
-                <br/><div id="threadStats" class="statTable"></div>
+                <br><div id="userStats" class="statTable"></div>
+                <br><div id="threadStats" class="statTable"></div>
                 <!--<div id="dataWord"><br/>Thread Word Counts - ratio of original thread word count to total posts in thread</div>-->
             </div>  
-        <!--<div id="cloud"></div>-->
-        <!--<div id="stream"></div>-->
-        <!--<<div id="export"><p>Coming Soon</p></div>-->
-            <div id="about"></div>
+            <div id="dataset">
+                <br><div id="snaRaw" clas="statTable"></div>
+            </div>
+            <!--<div id="cloud"></div>-->
+            <!--<div id="stream"></div>-->
+            <!--<div id="about"></div>-->
+            <!--<div id="roadmap"></div>-->
             <div id="help"></div>
-            <div id="roadmap"></div>
         </div>
         <div id='saveImage'>
             <button class="btn btn-success" id="save_as_svg" value="">Save as SVG</button>
@@ -273,10 +277,9 @@ if($_SESSION['countOfTopic'] > 0 ){
                             $('#statistics').append(makeStatistics(d3data));
                             $('#saveImage').hide();
                             break;
-                        case 'export':
-                            //$('#export').append(makeExport(d3data));
-                           // $('#export').append(save2CSV(d3data[0], "test.csv"));
-                            
+                        case 'dataset':
+                            $('#dataset').append(makeDataSet(d3data));
+                            $('#saveImage').hide();
                             break;
                         case 'stream':
                             //$('#stream').append(makeStream(d3data));
@@ -297,8 +300,8 @@ if($_SESSION['countOfTopic'] > 0 ){
             
             //set About tab as start and disable all graph tabs
             $('#vis_container').tabs({
-                disabled: [0,1,2,3,4],
-                active: 5
+                disabled: [0,1,2,3,4,5],
+                active: 6
             });
         });
     </script>
