@@ -227,7 +227,7 @@ if($_SESSION['countOfTopic'] > 0 ){
                            }
                            //dataType: 'json',
                            //encode: true
-                    })
+                    });
                     //the json data returned from ajax.php
                     //.done(function(data){
                     //    var arrData = data;
@@ -306,23 +306,25 @@ if($_SESSION['countOfTopic'] > 0 ){
         });
     </script>
     <script>
-        (function ($) {
-            $.extend($.fn, {
-                makeCssInline: function () {
-                    this.each(function (idx, el) {
-                        var style = el.style;
-                        var properties = [];
-                        for (var property in style) {
-                            if ($(this).css(property)) {
-                                properties.push(property + ':' + $(this).css(property));
-                            }
-                        }
-                        this.style.cssText = properties.join(';');
-                        $(this).children().makeCssInline();
-                    });
-                }
-            });
-        }(jQuery));
+        //(function ($) {
+        //    $.extend($.fn, {
+        //        makeCssInline: function () {
+        //            this.each(function (idx, el) {
+        //                var style = el.style;
+        //                var properties = [];
+        //                for (var property in style) {
+        //                    if ($(this).css(property)) {
+        //                        properties.push(property + ':' + $(this).css(property));
+        //                    }
+        //                }
+        //                this.style.cssText = properties.join(';');
+        //                $(this).children().makeCssInline();
+        //            });
+        //        }
+        //    });
+        //}(jQuery));
+        
+
 
         //http://d3export.housegordon.org/
         //https://github.com/agordon/d3export_demo
@@ -332,19 +334,29 @@ if($_SESSION['countOfTopic'] > 0 ){
         */
         function submit_download_form(output_format)
         {
-                // Get the d3js SVG element
-                // Extract the data as SVG text string
-                var svg = "";
-                //https://github.com/Karl33to/jquery.inlineStyler
-                //add to the svg the css to inline style
-                $(window).load(function() {
-                    //$('iFrame').contents().find('svg').inlineStyler( );
-                    $('iframe').contents().find('svg').inlineStyler( );
-		});
-                
-                    var svg = $('svg')[0];
-                var svg_xml = (new XMLSerializer).serializeToString(svg);
+            
+            //https://gist.github.com/devinus/415179
+            //gistfile1.js
+            (function ($) {
+            var svgText =($('svg')[0]);
+                //NOTE: if the order of the stylesheets changes then the reference number to the d3-viz stylesheet will also need to change below.
+                //This can be changed by looping through the document.styleSheets looking for 'd3-viz' in [0].href
+                var rules = document.styleSheets[2].cssRules;
+                for (var idx = 0, len = rules.length; idx < len; idx++) {
+                  //$(rules[idx].selectorText).each(function (i, elem) {
+                  $('svg').find(rules[idx].selectorText).each(function (i, elem) {
+                    elem.style.cssText += rules[idx].style.cssText;
+                  });
+                }
+                $('style').remove();
+                $('script').remove();
+              })(jQuery);
         
+                // Get the d3js SVG element
+                // Extract the data as SVG text string  
+                var svg = $('svg')[0];
+                var svg_xml = (new XMLSerializer).serializeToString(svg);
+
                 // Submit the <FORM> to the server.
                 // The result will be an attachment file to download.
                 var form = document.getElementById("svgform");

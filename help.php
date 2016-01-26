@@ -45,7 +45,6 @@ session_start();
         <ul>
             <li>Next Up
                <ul>
-                  <li>Save images: saving css stylesheets</li>
                   <li>Statistics - ratio of original thread word count to total posts in thread</li>
                   <li>Word Cloud</li>
                </ul>
