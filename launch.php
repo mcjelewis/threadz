@@ -45,9 +45,6 @@ $_SESSION['client_secret'] = "Your Dev Key"; //replace with your key
 
 
 //////////////////////////////////////////////////////
-//set the domainLMS from the launch url returned from LTI
-$_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_return_url'], PHP_URL_HOST);
-//////////////////////////////////////////////////////
 //set variable to the shared secret used when setting up the lti.
 $shared_secret = "threadz-v1";
 //////////////////////////////////////////////////////
@@ -62,7 +59,7 @@ unset($_SESSION['messageArray']);
 //////////////////////////////////////////////////////
     
 require_once("functions.php");
-require_once("ims-blti/blti.php");
+//require_once("ims-blti/blti.php");
 
 //////////////////////////////////////////////////////
 
@@ -112,6 +109,7 @@ if(!ini_get('allow_url_fopen')) {
 //Course id, oauth_nonce and launch url provided back from lti launch data
 $_SESSION['courseID'] = $_REQUEST['custom_canvas_course_id'];
 $_SESSION['token_state_id'] = $_REQUEST['oauth_nonce'];
+$_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_return_url'], PHP_URL_HOST);
 
 //Get the token for the user
 //redirects to the URI set in LTI
