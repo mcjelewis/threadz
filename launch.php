@@ -112,7 +112,6 @@ if(!ini_get('allow_url_fopen')) {
 //Course id, oauth_nonce and launch url provided back from lti launch data
 $_SESSION['courseID'] = $_REQUEST['custom_canvas_course_id'];
 $_SESSION['token_state_id'] = $_REQUEST['oauth_nonce'];
-$_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_return_url'], PHP_URL_HOST);
 
 //Get the token for the user
 //redirects to the URI set in LTI
