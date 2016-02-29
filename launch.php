@@ -20,7 +20,7 @@ $_SESSION['expire'] = time() + (30 * 60);
 //////////////////////////////////////////////////////
 //Set LTI domain
 //The domainThreadz variable needs to match the URI provided in the original LTI form. Any redirects from the OAuth2 process must use this domain.
-$_SESSION['domainThreadz'] = "https://threadz.ewu.edu";
+$_SESSION['domainThreadz'] = "Server URL of where your Threadz folder is located";
 
 //If you are going through a proxy, you can add that here, otherwise leave blank.
 $_SESSION['proxy'] = '';
@@ -43,6 +43,10 @@ $lms = 'canvas';
 $_SESSION['client_id'] = 000;  //replace with your client id
 $_SESSION['client_secret'] = "Your Dev Key"; //replace with your key
 
+
+//////////////////////////////////////////////////////
+//set the domainLMS from the launch url returned from LTI
+$_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_return_url'], PHP_URL_HOST);
 //////////////////////////////////////////////////////
 //set variable to the shared secret used when setting up the lti.
 $shared_secret = "threadz-v1";
@@ -102,8 +106,10 @@ if(!ini_get('allow_url_fopen')) {
     //foreach($_REQUEST as $key => $val){
     //    echo $key ." = " . $val . "<br>";
     //}
+    //exit();
+    
 //////////////////////////////////////////////////////
-//Course id provided back from lti launch data
+//Course id, oauth_nonce and launch url provided back from lti launch data
 $_SESSION['courseID'] = $_REQUEST['custom_canvas_course_id'];
 $_SESSION['token_state_id'] = $_REQUEST['oauth_nonce'];
 $_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_return_url'], PHP_URL_HOST);
@@ -112,7 +118,6 @@ $_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_re
 //redirects to the URI set in LTI
 header('Location: '. $_SESSION['domainLMS'].'/login/oauth2/auth?client_id='.$_SESSION['client_id'].'&response_type=code&redirect_uri='.$_SESSION['domainThreadz'].'/tokenAuth.php&state='.$_SESSION['token_state_id']);
 exit();
-
 
 
 ?>
