@@ -20,7 +20,6 @@ if($error){
     exit();
 }
 
-
 //Check to make sure the state passed into the auth request is the same one returned.
 if($_SESSION['token_state_id'] == $state_test){
     //Post request with client_id, client_secret, and code (returned from above redirect) to /login/oauth2/token to obtain access token.
@@ -28,22 +27,24 @@ if($_SESSION['token_state_id'] == $state_test){
     $token_data = array('client_id' => $_SESSION['client_id'], 'redirect_uri' => $_SESSION['domainThreadz'] . "/tokenAuth.php", 'client_secret' => $_SESSION['client_secret'], 'code' => $code);    
 
     //http://stackoverflow.com/questions/5647461/how-do-i-send-a-post-request-with-php
-    //$token_options = array(
-    //    // use key 'http' even if you send the request to https://...
-    //    'http' => array(
-    //        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-    //        'method'  => 'POST',
-    //        'content' => http_build_query($token_data),
-    //    ),
-    //);
-    //$context  = stream_context_create($token_options);
-    //$result = file_get_contents($token_url, false, $context);
+    $token_options = array(
+        // use key 'http' even if you send the request to https://...
+        'http' => array(
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($token_data),
+            'proxy' => $proxy,
+        ),
+    );
     
-    $result = connectCanvasAPI($token_url,$token_data,'Post',$_SESSION['proxy']);
-    
+    $context  = stream_context_create($token_options);
+    $result = file_get_contents($token_url, false, $context);
+    //$result = connectCanvasAPI($token_url,$token_data,'Post',$_SESSION['proxy']);
+
     // save token into variable
     $jsonToken = json_decode($result, true);
     $current_token = $jsonToken['access_token'];
+    $refresh_token = $jsonToken['refresh_token'];
 
     //Collect the data from the lms page
     include("lms/". $_SESSION['dataPage']);
@@ -58,8 +59,6 @@ if($_SESSION['token_state_id'] == $state_test){
     echo "Altered States.";
     exit();
 }
-
-
 
 
 ?>
