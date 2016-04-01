@@ -200,7 +200,16 @@ if($_SESSION['countOfTopic'] > 0 ){
                 $('#formTopics').submit();
             });
 
-            $('#formTopics').submit(function() {
+            $('#formTopics').submit(function() {\	var dtype = $("#topic_list option:selected").attr("class");
+				
+				//is this a threaded discussion? see corresponding changes lines 232, 233
+				if(dtype=="threaded"){
+					var disabled = [];
+					var activeTab = 0;
+				}else{
+					var disabled = [0,1,3];
+					var activeTab = 4;
+				}
                     $.ajax({
                            type: "POST",
                            url: "ajax.php",
@@ -208,7 +217,7 @@ if($_SESSION['countOfTopic'] > 0 ){
                            dataType: 'json',
                            success: function(data){
                                 if(data == "Expired Session, please reauthenticate Threadz."){
-                                    console.log(data)
+                                   // console.log(data)
                                     $('topics').html(data);
                                 }else{
                                     d3data = data;
@@ -219,8 +228,8 @@ if($_SESSION['countOfTopic'] > 0 ){
                                     $('#welcome').hide();
                                     $('#networkSize').show();
                                     $('#matrixOrder').show();
-                                    $('#vis_container').tabs('option', 'disabled',[]);
-                                    $('#vis_container').tabs({active: 0});
+                                    $('#vis_container').tabs('option', 'disabled',disabled);
+                                    $('#vis_container').tabs({active: activeTab});
                                     $('.discussionLink').html("<a class='mini' target='_blank' href='" + d3data.topic.url + "'>go to Discussion</a>");
                                     $('#saveImage').show();
                                 }
