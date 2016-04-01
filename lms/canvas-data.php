@@ -60,7 +60,9 @@
             $_SESSION['arrTopics'] = $arrTopic;
             //create HTML display Topic list for published discussions and with discussions with one or more posts.
             if($topic['published'] == true && $topic['discussion_subentry_count']>0){
-                $select_list_option.= "<option value='".$topic_id."'>".$topic_title."</option>";
+               // $select_list_option.= "<option value='".$topic_id."'>".$topic_title."</option>";
+               //set class so we will know which tabs to activate
+               $select_list_option.= "<option class='".$topic['discussion_type']."' value='".$topic_id."'>".$topic_title."</option>";
                 //count the number of topics that are published and have more than one post, this count determins what
                 //initially gets displayed on threadz.php
                 $_SESSION['countOfTopic']++;
