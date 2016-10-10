@@ -2,7 +2,6 @@
 require_once("ims-blti/OAuth.php");
 // Returns true if this is a Basic LTI message
 // with minimum values to meet the protocol
-//http://developers.imsglobal.org/phpcode.html
 function is_basic_lti_request() {
    $good_message_type = $_REQUEST["lti_message_type"] == "basic-lti-launch-request";
    $good_lti_version = $_REQUEST["lti_version"] == "LTI-1p0";

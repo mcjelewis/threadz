@@ -45,13 +45,16 @@ session_start();
         <ul>
             <li>Next Up
                <ul>
-                  <li>Statistics - ratio of original thread word count to total posts in thread</li>
+                  <li>Betweenness Centrality on Network graph</li>
+                  <li>Eigenvector Centrality on Network graph</li>
+                  <li>Group Discussions</li>
+                  <li>Combine multiple discussions from course into single visualization</li>
                   <li>Word Cloud</li>
                </ul>
             </li>
             <li>Reported Bugs
                <ul>
-                  <li>Chord Diagram / Change of discussion unresponsive
+                  <li>Timeout / unresponsive
                      <ul>
                         <li>Problem: If the session times out, no notification message appears when trying to access other discussions or the chord diagram.</li>
                         <li>Work Around: Until this issue is addressed, the solution is to reinstigate Threadz by clicking the Threadz link in the left navigation.</li>
@@ -112,8 +115,10 @@ session_start();
         <p>On each of the charts there are buttons to save the graphic as a SVG, PDF or PNG file types. At this time, the graphics do not mantain the full set of formatting added to what you see on screen. While not perfect, the saved image is a good start.</p>
       
         <h3>Network</h3> 
-        <p>The social network visualizations show typical line/node graphs that connects users together. Each node represents a different user in the discussion and each line represents a post from or to another user. The relative size of the circles (nodes) can be changed to represent the value selected for either the number of posts sent, posts received, total posts, total word count of posts sent, and the average word count of posts sent. These charts are useful to quickly discern any individual or group that is isolated or conversly who are the power users within the forum.</p>
-        <p>The nodes in this chart are movable to help single out individuals or groups when the network of connections gets too complex visually. To manipulate a node, click and drag a node circle to another part of the page where it will then be locked into that location until being double clicked.</p>
+        <p>The network visualization shows a typical line/node graph that connects users or posts together.</p>
+         <p>This visualization is useful to quickly discern any individual or group that is isolated or is a driving hub within the forum.</p>
+         <p>The nodes in this chart are movable to help single out individuals or groups when the network of connections gets too complex visually.</p>
+         <p>To manipulate a node, click and drag a node circle to another part of the page. To release the node, double click.</p>
     
         <h3>Chord Diagram</h3>
         <p>The chord diagram displays the directional paths of the interactions between two students or instructor. The count of posts is represented by the thickness of the line at either. Threadz uses a dynamic interface allowing the user to hover over the outer edge of the circle on a specific user to display the number of posts sent and received. Hover over the chord line that connects two students to display the count of posts from either direction.</p>
@@ -121,9 +126,6 @@ session_start();
         <h3>Timeline</h3>
         <p>The timeline visualization displays the count of discussion posts by date. This visual can help you determin the rate of submissions and determin if there are any patterns to those submissions.</p>
       
-        <h3>Matrix</h3>
-        <p>The matrix visualization shows the number of communication interactions per person in a high to low color scale. The color of the cell between two students shows the frequency of connections. The darker the cell the higher the frequency. The order of the matrix can be set to the total frequency of connections, number of posts sent, number of posts received, or name.</p>
-    
         <h3>Statistics</h3>
         <p>The Statistics tab shows the spreadsheet view of the discussion with counts of participants, posts, threads, words per post, words per thread.</p>
    </div>

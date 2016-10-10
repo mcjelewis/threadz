@@ -11,14 +11,18 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 session_start();
 //Redirect retuns the state and code variables.
-$state_test = $_REQUEST['state'];
-$code = $_REQUEST['code'];
-$error = $_REQUEST['error'];
+$state_test = isset($_REQUEST['state']) ? $_REQUEST['state'] : '';
+$code = isset($_REQUEST['code']) ? $_REQUEST['code'] : '';
+$error = isset($_REQUEST['error']) ? $_REQUEST['error'] : '';
 
 if($error){
-    echo "Access Denied";
+    echo "Access Denied <br>";
+    echo "Canvas Error: " . $error;
     exit();
 }
+
+//include the functions that connect to the API data
+include("functionsLMS.php");
 
 //Check to make sure the state passed into the auth request is the same one returned.
 if($_SESSION['token_state_id'] == $state_test){
@@ -31,34 +35,56 @@ if($_SESSION['token_state_id'] == $state_test){
         // use key 'http' even if you send the request to https://...
         'http' => array(
             'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            //'header'  => "Content-type: application/x-www-form-urlencoded\r\nUser-Agent:MyAgent/1.0\r\n",
             'method'  => 'POST',
             'content' => http_build_query($token_data),
-            'proxy' => $proxy,
+            'proxy' => $_SESSION['proxy'],
         ),
     );
     
     $context  = stream_context_create($token_options);
-    $result = file_get_contents($token_url, false, $context);
-    //$result = connectCanvasAPI($token_url,$token_data,'Post',$_SESSION['proxy']);
+    if($lms == 'canvas' & $_SESSION['proxy'] != NULL){
+        //For those running off a proxy server and using Canvas
+        $result = connectCanvasAPI($token_url,$token_data,'Post',$_SESSION['proxy']);
+    }else{
+        $result = file_get_contents($token_url, false, $context);
+    }
+    //Error Checking
+    if($result == false){
+        echo "ERROR: no data was returned from the access request<br>";
+        print_r($token_options);
+        exit();
+    }
 
     // save token into variable
     $jsonToken = json_decode($result, true);
-    $current_token = $jsonToken['access_token'];
-    $refresh_token = $jsonToken['refresh_token'];
-
-    //Collect the data from the lms page
-    include("lms/". $_SESSION['dataPage']);
+    if($jsonToken['access_token'] == ""){
+        echo "Was not able to authenticate into Canvas, no access token was generated: see tokenAuth.php";
+        exit();
+    }else{
+        $current_token = $jsonToken['access_token'];
+        $refresh_token = $jsonToken['refresh_token'];
+        //Collect the data from the lms page
+        include("lms/". $_SESSION['dataPage']);
+        
+////////////////////////////////////////////////////////        
+//testing the data saved into SESSION
+    //foreach($_SESSION as $key => $val){
+    //    echo $key ." = " . $val . "<br>";
+    //}
+    //exit();
+////////////////////////////////////////////////////////   
     
-    //save the html topic list into SESSION.
-    $_SESSION['select_list_option']= $select_list_option;
-
-    //redirect to display page
-    header('Location: '.$_SESSION['domainThreadz'].'/threadz.php');
-    exit();
+        //redirect to display page
+        header('Location: '.$_SESSION['domainThreadz'].'/threadz.php');
+        exit();
+    }
 }else{
     echo "Altered States.";
     exit();
 }
+
+
 
 
 ?>

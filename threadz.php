@@ -61,6 +61,8 @@ if($_SESSION['countOfTopic'] > 0 ){
     <script type="text/javascript" src="<?php echo $domainThreadz ?>/lib/js/d3/d3.layout.cloud.js"></script>
     <script type="text/javascript" src="<?php echo $domainThreadz ?>/lib/js/d3/d3-visuals.js?<?php echo date('YmdHis') ?>"></script>
 
+    <!--JSNetworkX Library -->
+    <script type="text/javascript" src="<?php echo $domainThreadz ?>/lib/js/jsnetworkx.js"></script>
 </head>
 <body>
     <h2 id='beta'>Threadz</h2>
@@ -85,34 +87,70 @@ if($_SESSION['countOfTopic'] > 0 ){
                 <!--<li><a href="#chord"><span>Chord</span></a></li>-->
                 <li><a href="chord.php"><span>Chord</span></a></li>
                 <li><a href="#timeline"><span>Timeline</span></a></li>
-                <li><a href="#matrix"><span>Matrix</span></a></li>
                 <li><a href="#statistics"><span>Statistics</span></a></li>
                 <li><a href="#dataset"><span>Data Set</span></a></li>
-                <!-- <li><a href="#stream"><span>Timestream</span></a></li>-->
-                <!-- <li><a href="#cloud"><span>Word Cloud</span></a></li>-->
+                <li><a href="help.php"><span>Help</span></a></li>
+                <!--<li><a href="#cloud"><span>Word Cloud</span></a></li>-->
+                <!--<li><a href="#matrix"><span>Matrix</span></a></li>-->
+                <!--<li><a href="#stream"><span>Stream</span></a></li>-->
                 <!-- <li><a href="about.php"><span>About</span></a></li>-->
                 <!-- <li><a href="help.php"><span>Help</span></a></li>-->
                 <!-- <li><a href="roadmap.php"><span>Road Map</span></a></li>-->
                 
-                <li><a href="help.php"><span>Help</span></a></li>
             </ul>
             <div id="network">
+                <div id="nodeType">
+                    <input type="radio" name="nodeTypeDisplay" value='threads' id="radio1" checked="checked"><label for="radio1">Display by User</label>
+                    <input type="radio" name="nodeTypeDisplay" value='people' id="radio2"><label for="radio2">Display by Posts/Replies</label>
+                </div>
+            <!--<div id='nodeType'>
+                    <button id='nodeType-posts'>Display by Posts/Replies</button>
+                    <button id='nodeType-people'>Display by User</button>
+                </div>-->
                 <div id='networkSize'>Size by:
                     <select id="nodeSize">
-                        <option value="sent">Posts Sent</option>
-                        <option value="received">Posts Received</option>
-                        <option value="total">Total Posts</option>
+                        <option value="sent">Posts/Replies Sent</option>
+                        <option value="received">Replies Received</option>
+                        <option value="total">Total Posts/Replies</option>
                         <option value="word">Word Count</option>
-                        <option value="word_avg">Word Count Avg</option>
+                        <!--<option value="word_avg">Word Count Avg</option>-->
+                        <!--<option value="betweenness">Betweenness Score</option>-->
                     </select>
                 </div>
-                <div class='d3-visual'><div id='networkDirected'></div></div>
+                <div id='networkColor'>Highlight:
+                    <select id="nodeColor">
+                        <option value="none"></option>
+                        <option value="length">Post/Reply Length</option>
+                        <option value="late">Late Posts/Replies</option>
+                        <option value="unread">Unread Posts/Replies</option>
+                        <option value="isolated">Isolated Learners</option>
+                        <!--<option value="pcount">Count</option>
+                        <option value="likes">Likes</option>
+                        <option value="users">Users</option>-->
+                    </select>
+                </div>
+                <div class='d3-visual'>
+                    <div id='networkDirected'></div>
+                    <div id='missing'></div>
+                </div>
                 <div id='right-container'>
                     <h4>Network Diagram</h4>
-                    <p>The network visualization shows a typical line/node graph that connects users together.  Each node represents a different user in the discussion and each line represents a post from one user to another.  The relative size of the circles (nodes) changes to represent the value select for either number of posts sent, posts recieved, total posts, total word count of posts sent, and avg word count of post sent. </p>
+                    <p>The network visualization shows a typical line/node graph that connects users together.  </p>
                     <p>This visualization is useful to quickly discern any individual or group that is isolated or is a driving hub within the forum.</p>
                     <p>The nodes in this chart are movable to help single out individuals or groups when the network of connections gets too complex visually.</p>
                     <p>To manipulate a node, click and drag a node circle to another part of the page.  To release the node, double click.</p>
+                    <h4>Key</h4>
+                    <div id='userKey'>
+                        <p>Each node represents a different user in the discussion and each line represents a connection from one user to another.  The relative size of the circles (nodes) changes to represent the quantity of number of posts/replies sent, replies received, or total of sent/received. </p>
+                    </div>
+                    <div id='threadKey'>
+                        <p>Each node represents a different post in the discussion. Darker colors signify the original post of the thread, lighter shades show replies. Orange circles (nodes) represent highlighted students or posts depending on selection.</p>
+                        <div><img src='images/blue-dot1.png' align="middle" width=20px heigth=20px alt="dark blue dot"><i>original thread post</i></div>
+                        <div><img src='images/blue-dot2.png' align="middle" width=20px heigth=20px alt="light blue dot"><i>response to a post</i></div>
+                        <div><img src='images/orange-dot1.png' align="middle" width=20px heigth=20px alt="dark orange dot"><i>late, unread, or isolated learner</i></div>
+                            
+                    </div>
+                    <div id='missing>'></div>
                 </div>
                 <div class='discussionLink'></div>
             </div>
@@ -128,14 +166,13 @@ if($_SESSION['countOfTopic'] > 0 ){
                 </div>
                 <div class='discussionLink'></div>
             </div>
-            <div id="matrix" class='matrix'>
+            <!--<div id="matrix" class='matrix'>
                 <div id='matrixOrder'>Order By:
                     <select id="order">
                         <option value="name">Name</option>
                         <option value="count">Frequency</option>
                         <option value="post_count">Posts Sent</option>
                         <option value="posts_received">Posts Received</option>
-                        <!--<option value="group">Group</option>-->
                     </select>
                 </div>
                 <div class='d3-visual'><div id='matrixHeatmap'></div></div>
@@ -146,7 +183,7 @@ if($_SESSION['countOfTopic'] > 0 ){
                     <p>The order of the matrix can be set to the total frequency of connections, number of posts sent, number of posts recieved, or name.</p>
                 </div>
                 <div class='discussionLink'></div>
-            </div> 
+            </div> -->
             <div id="statistics">
                 <div id="genStats">
                     <div id="tPart"></div>
@@ -161,8 +198,17 @@ if($_SESSION['countOfTopic'] > 0 ){
             <div id="dataset">
                 <br><div id="snaRaw" clas="statTable"></div>
             </div>
-            <!--<div id="cloud"></div>-->
-            <!--<div id="stream"></div>-->
+            <div id="cloud">
+                <div class='d3-visual'><div id='wordCloud'></div></div>
+            </div>
+            <!--<div id="stream">
+                <div class='d3-visual'><div id='networkStream'></div></div>
+                <div id='right-container'>
+                    <h4>Network Stream</h4>
+                    <p>This network visualization shows ...</p>
+                </div>
+                <div class='discussionLink'></div>
+            </div>-->
             <!--<div id="about"></div>-->
             <!--<div id="roadmap"></div>-->
             <div id="help"></div>
@@ -201,6 +247,15 @@ if($_SESSION['countOfTopic'] > 0 ){
             });
 
             $('#formTopics').submit(function() {
+                    var dtype = $("#topic_list option:selected").attr("class");
+                    var disabled = [];
+                    var activeTab = 0;
+                    //Types of discussions are 'side_comment' or 'threaded'
+                    //If this is a threaded discussion, you can disable tabs if desired.
+                    //if(dtype!="threaded"){
+                    //        var disabled = [0,1,3,4];
+                    //        var activeTab = 5;
+                    //}
                     $.ajax({
                            type: "POST",
                            url: "ajax.php",
@@ -208,21 +263,28 @@ if($_SESSION['countOfTopic'] > 0 ){
                            dataType: 'json',
                            success: function(data){
                                 if(data == "Expired Session, please reauthenticate Threadz."){
-                                    console.log(data)
+                                    //console.log(data)
                                     $('topics').html(data);
                                 }else{
                                     d3data = data;
                                     $('#networkDirected').html(d3data);
                                     $('#dataTest').html(d3data);
                                     $('#networkDirected').append(makeForceDirected(d3data));
-                                    //$('#saveImage').html('<button id="save">Save as Image</button>');
                                     $('#welcome').hide();
                                     $('#networkSize').show();
+                                    $('#networkColor').hide();
+                                    $('#userKey').show();
+                                    $('#threadKey').hide();
+                                    $('#nodeType-posts').show();
+                                    $('#nodeType-people').hide();
                                     $('#matrixOrder').show();
-                                    $('#vis_container').tabs('option', 'disabled',[]);
-                                    $('#vis_container').tabs({active: 0});
-                                    $('.discussionLink').html("<a class='mini' target='_blank' href='" + d3data.topic.url + "'>go to Discussion</a>");
+                                    $('#vis_container').tabs('option', 'disabled',disabled);
+                                    $('#vis_container').tabs({active: activeTab});
+                                    $('.discussionLink').html("<a class='mini' target='_blank' href='" + d3data.topic.topic_url + "'>go to Discussion</a>");
                                     $('#saveImage').show();
+                                    $('input:radio[name="nodeTypeDisplay"][value="threads"]').prop('checked',true);
+                                    $('#nodeSize').val('sent');
+                                    $('#nodeColor').val('none');
                                 }
                            }
                            //dataType: 'json',
@@ -241,6 +303,44 @@ if($_SESSION['countOfTopic'] > 0 ){
                 //event.preventDefault();
                 });
             
+            
+                        //submit the topic list dropdown menu on change
+            //$('#nodeType-posts').click(function() {
+            //        $('#networkDirected').append(makeFDposts(d3data));
+            //        $('#networkColor').show();
+            //        $('#networkSize').hide();
+            //        $('#nodeType-posts').hide();
+            //        $('#nodeType-people').show();
+            //    });
+            //
+            //$('#nodeType-people').click(function(){
+            //        $('#networkDirected').append(makeForceDirected(d3data));
+            //        $('#networkColor').hide();
+            //        $('#networkSize').show();
+            //        $('#nodeType-posts').show();
+            //        $('#nodeType-people').hide();
+            //    });
+$('input:radio[name="nodeTypeDisplay"]').change(
+    function(){
+        var valRadio = $('input:radio[name="nodeTypeDisplay"]:checked').val();
+        if( valRadio == 'threads'){
+            $('#nodeSize').val('sent');
+            $('#networkDirected').append(makeForceDirected(d3data));
+            $('#networkColor').hide();
+            $('#networkSize').show();
+            $('#userKey').show();
+            $('#threadKey').hide();
+        }else if(valRadio == 'people'){
+            $('#nodeColor').val('none').change();
+            $('#networkDirected').append(makeFDposts(d3data));
+            $('#networkColor').show();
+            $('#networkSize').hide();
+            $('#userKey').hide();
+            $('#threadKey').show();
+        }
+    });
+            
+            
             //create tabs navigation for the visualization data
             $('#vis_container').tabs({
                 beforeActivate: function (event, ui) {
@@ -248,10 +348,26 @@ if($_SESSION['countOfTopic'] > 0 ){
                     switch(runD3){
                         case 'network':
                             $('line').css({"stroke": "#eee", "stroke-width": "1.5px"});
-                            $('#networkDirected').append(makeForceDirected(d3data));
-                            $('#nodeSize').val('sent');
+                            
+                            var valRadio = $('input:radio[name="nodeTypeDisplay"]:checked').val();
+                            if( valRadio == 'threads'){
+                                $('#nodeSize').val('sent');
+                                $('#networkDirected').append(makeForceDirected(d3data));
+                                $('#networkColor').hide();
+                                $('#networkSize').show();
+                            }else if(valRadio == 'people'){
+                                $('#nodeColor').val('none').change();
+                                $('#networkDirected').append(makeFDposts(d3data));
+                                $('#networkColor').show();
+                                $('#networkSize').hide();
+                            }
+
+                            //$('#networkDirected').append(makeForceDirected(d3data));
+                            //$('#nodeSize').val('sent');
                             $('#right-container').show();
                             $('#saveImage').show();
+                            $('#nodeType-posts').show();
+                            $('#nodeType-people').hide();
                             break;
                         ////Due to an issue with the timing of the d3 rendering, the chord diagram needs to be created from its own page.
                         ////The function getComputedTextLength() is used within makeChodMatrix() on the d3-visulas.js page to calculate the length
@@ -270,7 +386,8 @@ if($_SESSION['countOfTopic'] > 0 ){
                         case 'matrix':
                             $('line').css({"stroke": "#fff", "stroke-width": ".5px"});
                             $('text.active').css({"fill": "red"});
-                            $('#matrix').append(makeAdjMatrix(d3data));
+                            $('#matrix').append(makeBetween(d3data));
+                            //$('#matrix').append(makeAdjMatrix(d3data));
                             $('#saveImage').show();
                             break;
                         case 'statistics':
@@ -283,9 +400,10 @@ if($_SESSION['countOfTopic'] > 0 ){
                             break;
                         case 'stream':
                             //$('#stream').append(makeStream(d3data));
+                            //$('#stream').append(makeFDposts(d3data));
                             break;
                         case 'cloud':
-                            //$('#cloud').append(makeCloud(d3data));
+                            $('#cloud').append(makeCloud(d3data));
                             break;
                     }
                   }
@@ -300,8 +418,8 @@ if($_SESSION['countOfTopic'] > 0 ){
             
             //set About tab as start and disable all graph tabs
             $('#vis_container').tabs({
-                disabled: [0,1,2,3,4,5],
-                active: 6
+                disabled: [0,1,2,3,4],
+                active: 5
             });
         });
     </script>

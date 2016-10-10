@@ -8,17 +8,17 @@
     http://www.imsglobal.org/xsd/imsbasiclti_v1p0 http://www.imsglobal.org/xsd/lti/ltiv1p0/imsbasiclti_v1p0.xsd
     http://www.imsglobal.org/xsd/imslticm_v1p0 http://www.imsglobal.org/xsd/lti/ltiv1p0/imslticm_v1p0.xsd
     http://www.imsglobal.org/xsd/imslticp_v1p0 http://www.imsglobal.org/xsd/lti/ltiv1p0/imslticp_v1p0.xsd">
-    <blti:title>Threadz</blti:title>
+    <blti:title>Threadz-Beta</blti:title>
     <blti:description>Threadz is a discussion visualization tool that adds graphs and statistics to Canvas discussions.</blti:description>
     <blti:icon></blti:icon>
-    <blti:launch_url>https://threadz.ewu.edu/launch.php</blti:launch_url>
+    <blti:launch_url>https://threadz-beta.ewu.edu/launch.php</blti:launch_url>
     <blti:extensions platform="canvas.instructure.com">
-      <lticm:property name="privacy_level">name_only</lticm:property>
-      <lticm:property name="domain">https://threadz.ewu.edu/</lticm:property>
+      <lticm:property name="privacy_level">public</lticm:property>
+      <lticm:property name="domain">https://threadz-beta.ewu.edu/</lticm:property>
       <lticm:options name="course_navigation">
-        <lticm:property name="url">https://threadz.ewu.edu/launch.php</lticm:property>
-        <lticm:property name="text">Threadz</lticm:property>
-        <lticm:property name="visibility">members</lticm:property>
+        <lticm:property name="url">https://threadz-beta.ewu.edu/launch.php</lticm:property>
+        <lticm:property name="text">Threadz-Beta</lticm:property>
+        <lticm:property name="visibility">public</lticm:property>
         <lticm:property name="default">enabled</lticm:property>
         <lticm:property name="enabled">true</lticm:property>
       </lticm:options>

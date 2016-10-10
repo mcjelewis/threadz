@@ -24,18 +24,57 @@
 }
 
 .networkBlue{
-  fill: #c6dbef;
+  fill: #1f77b4;
 }
 .networkBlue.fixed{
   fill: #e6550d;
 }
 .networkOrange{
   fill: #e6550d;
-  /*fill: #FD8D3C;*/
+  /*fill: #ff7f0e*/
 }
 
 .networkOrange.fixed{
   fill: #c6dbef;
+}
+
+.networkPink{
+  fill: #e377c2;
+}
+.networkPink.fixed{
+  fill: #e6550d;
+}
+.networkWhite{
+  fill: #e8e8e8;
+}
+.networkWhite.fixed{
+  fill: #e6550d;
+}
+
+.networkGray{
+  fill: #444444;
+}
+.networkLightPink{
+  fill: #f7b6d2;
+}
+.networkLightPurple{
+  fill: #5254a3;
+}
+
+.networkRed{
+  fill: #843c39;
+}
+.networkYellow{
+  fill: #e7ba52;
+}
+.networkGreen{
+  fill: #637939;
+}
+.networklightGreen{
+  fill: #b5cf6b;
+}
+.isolated0{
+  fill: #e377c2;
 }
 /*
 .node {
@@ -179,7 +218,7 @@ path.chord {
   stroke: #000;
   stroke-width: .25px;
 }
-#circle:hover path.fade {
+#circle:hover path.fade, #circle:focus  {
   display: none;
 }
       
@@ -231,7 +270,7 @@ font-family: 'Volkhov', serif;
   fill: steelblue;
 }
 
-.bar:hover {
+.bar:hover, .bar:focus {
   fill: brown;
 }
 

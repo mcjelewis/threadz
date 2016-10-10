@@ -1,7 +1,7 @@
 # Threadz
 
 ***
-Last Modified Date: Jan 8, 2016  
+Last Modified Date: Oct 7, 2016  
 Name: Threadz  
 Author: Matt Lewis  
 Contact: mlewis23@ewu.edu  
@@ -63,7 +63,7 @@ The software is provided "AS IS", without warranty of any kind, express or impli
 ###   Installation Requirements ##
 //////////////////////////////////////////////
 
-1. Access to a directory on a PHP 5.3 webserver with a SSL Certificate  
+1. Access to a directory on a PHP webserver with a SSL Certificate  
 2. Access to php.ini file, or make sure the 'allow_url_fopen' variable is set to on  
 3. Canvas developer key  
 
@@ -97,14 +97,14 @@ The current process for the creation of Canvas developer keys is to have your Ca
 2. Download treadz.zip.  
 3. Save Threadz directory onto the websever.  
 4. Generate Canvas developer key if you haven't already done so (see [Developer Key Generation](#developer-key-generation) ).  
-5. Edit the launch.php file. Edit the following variables found between lines 21-48.  
-    - $domainThreadz = [your server url]   
+5. Edit the preferences.php file. Edit the following variables found between lines 15-40.  
+    - $domainThreadz = [your server url]        
+    - $domainLMS = [your LMS url]       
     - $lms = [your LMS]  
     - $client_id = [your ID]  
     - $client_secret = [your Key]  
     - OPTIONAL
-        $shared_secret = [your Key]
-        $proxy = [your proxy] 
+        $shared_secret = [your Key]  
 6. Edit the config-threadz.xml file.  
     - There are three lines that need to be edited, all related to the path to your webserver. Modify lines for the launch_url, domain, and url properties with path to your server. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html  
 7. Move the lib/pl/svgDownload.pl file into your server's perl directory (typically the cgi-bin outside of the webserver directory in Apache). On the treadz.php page, check the directory path in the hidden form titled svgform to make sure it matches where the svgDownload.pl page has been placed. This file is what is used to save the visualizations out as pdf, png, or svg files. 
@@ -132,7 +132,7 @@ Canvas has a user guide about how to set up an LTI : https://guides.instructure.
   1. Configuration Type: select 'By URL'from the drop down list  
   2. Name: enter 'Threadz: Discussion Visualization Tool' or another name that makes sense to you.  
   3. Consumer Key: leave empty  
-  4. Shared Secret: threadz-v1  (option to change the shared secret on luanch.php)
+  4. Shared Secret: threadz  (option to change the shared secret on preferences.php)
   5. Config URL: paste the url link to the config-threadz.xml file (Getting Started step 6).  
 6. Click 'Submit'
 
