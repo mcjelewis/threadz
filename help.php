@@ -128,6 +128,7 @@ session_start();
       
         <h3>Statistics</h3>
         <p>The Statistics tab shows the spreadsheet view of the discussion with counts of participants, posts, threads, words per post, words per thread.</p>
+        <p>In the discussion threads table, posted_wordCount and total_wordCount refer to the length of the first post and the entire thread, respectively.</p>
    </div>
 </div>
 
