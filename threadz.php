@@ -162,7 +162,7 @@ if($_SESSION['countOfTopic'] > 0 ){
                 </div>
                 <div id='right-container'>
                     <h4>Timeline</h4>
-                    <p>The timeline visualization displays the count of discussion posts by date. This visual can help you determin the rate of submissions and determin if there are any patterns to those submissions.</p>
+                    <p>The timeline visualization displays the count of discussion posts by date. This visual can help you determine the rate of submissions and determine if there are any patterns to those submissions.</p>
                 </div>
                 <div class='discussionLink'></div>
             </div>
@@ -180,7 +180,7 @@ if($_SESSION['countOfTopic'] > 0 ){
                     <h4>Matrix Heatmap</h4>
                     <p>The matrix visualization the number of communications a person was a part of.</p>
                     <p>The color of the cell between two students shows the frequency of connections. The darker the cell the higher the frequency.</p>
-                    <p>The order of the matrix can be set to the total frequency of connections, number of posts sent, number of posts recieved, or name.</p>
+                    <p>The order of the matrix can be set to the total frequency of connections, number of posts sent, number of posts received, or name.</p>
                 </div>
                 <div class='discussionLink'></div>
             </div> -->
@@ -228,8 +228,8 @@ if($_SESSION['countOfTopic'] > 0 ){
         </form>
     </div>
     <div id='noTopics'>
-        <h3>No Discussion Topics Avaliable</h3>
-        <p>Before you can use Threadz, there must be at minimum of one published disucssion in your course with one or more submitted posts.  Please check to make sure that your course meets these requirments.</p>
+        <h3>No Discussion Topics Available</h3>
+        <p>Before you can use Threadz, there must be at minimum of one published disucssion in your course with one or more submitted posts.  Please check to make sure that your course meets these requirements.</p>
     </div>
     <script>
         //jquery submit Discussion Topic choice on change
