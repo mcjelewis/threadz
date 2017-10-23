@@ -112,7 +112,7 @@ session_start();
         <p>Select the title of a discussion from the drop down list above the chart tabs.  The list includes all published discussions that have one or more posts submitted to it.</p>
       
         <h3>Saving Graphics</h3>
-        <p>On each of the charts there are buttons to save the graphic as a SVG, PDF or PNG file types. At this time, the graphics do not mantain the full set of formatting added to what you see on screen. While not perfect, the saved image is a good start.</p>
+        <p>On each of the charts there are buttons to save the graphic as a SVG, PDF or PNG file types. At this time, the graphics do not maintain the full set of formatting added to what you see on screen. While not perfect, the saved image is a good start.</p>
       
         <h3>Network</h3> 
         <p>The network visualization shows a typical line/node graph that connects users or posts together.</p>
@@ -124,7 +124,7 @@ session_start();
         <p>The chord diagram displays the directional paths of the interactions between two students or instructor. The count of posts is represented by the thickness of the line at either. Threadz uses a dynamic interface allowing the user to hover over the outer edge of the circle on a specific user to display the number of posts sent and received. Hover over the chord line that connects two students to display the count of posts from either direction.</p>
     
         <h3>Timeline</h3>
-        <p>The timeline visualization displays the count of discussion posts by date. This visual can help you determin the rate of submissions and determin if there are any patterns to those submissions.</p>
+        <p>The timeline visualization displays the count of discussion posts by date. This visual can help you determine the rate of submissions and determine if there are any patterns to those submissions.</p>
       
         <h3>Statistics</h3>
         <p>The Statistics tab shows the spreadsheet view of the discussion with counts of participants, posts, threads, words per post, words per thread.</p>
