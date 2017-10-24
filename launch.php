@@ -96,7 +96,7 @@ if(!function_exists('curl_version')){
 $_SESSION['rolesLTI'] = $_REQUEST['roles'];
 $_SESSION['roles'] = setRoles($_REQUEST['roles']);
 $_SESSION['token_state_id'] = $_REQUEST['oauth_nonce'];
-$_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_return_url'], PHP_URL_HOST);
+#$_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_return_url'], PHP_URL_HOST);
 
 //////////////////////////////////////////////////////
 //Get the token for the user

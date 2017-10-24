@@ -14,6 +14,9 @@
 //The domainThreadz variable needs to match the URI provided in the original LTI form. Any redirects from the OAuth2 process must use this domain.
 $_SESSION['domainThreadz'] = "Server URL of where your Threadz folder is located";
 
+
+$_SESSION['domainLMS'] = "LMS URL";
+
 //If you are going through a proxy, you can add that here, otherwise leave as null.
 $_SESSION['proxy'] = null;
 
