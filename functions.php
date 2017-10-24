@@ -40,7 +40,7 @@ function d3Data($topic_id){
     //reset source number back to zero
    $sourceNum = 0;
    
-   //capture unread, foreced_entries, and entry_ratings
+   //capture unread, forced_entries, and entry_ratings
    $_SESSION[$array_title]['unread_entries'] = $jsonData['unread_entries'];
    $_SESSION[$array_title]['forced_entries'] = $jsonData['forced_entries'];
    $_SESSION[$array_title]['entry_ratings'] = $jsonData['entry_ratings'];
@@ -109,13 +109,13 @@ function d3Data($topic_id){
             }
         }
         $message_id = $view['id'];
-        if(in_array($_SESSION[$array_title]['unread_entries'], $message_id)){
+        if(in_array($message_id, $_SESSION[$array_title]['unread_entries'])){
             $unread = true;
         }
-        if(in_array($_SESSION[$array_title]['foreced_entries'], $message_id)){
+        if(in_array($message_id, $_SESSION[$array_title]['forced_entries'])){
             $unread_manual = true;
         }
-        if(in_array($_SESSION[$array_title]['entry_ratings'], $message_id)){
+        if(in_array($message_id, $_SESSION[$array_title]['entry_ratings'])){
             $topic_rating = true;
             $topic_rating_count = $_SESSION[$array_title]['entry_ratings'][$message_id];
         }
