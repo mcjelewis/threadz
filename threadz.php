@@ -213,19 +213,6 @@ if($_SESSION['countOfTopic'] > 0 ){
             <!--<div id="roadmap"></div>-->
             <div id="help"></div>
         </div>
-        <div id='saveImage'>
-            <button class="btn btn-success" id="save_as_svg" value="">Save as SVG</button>
-            <button class="btn btn-success" id="save_as_pdf" value="">Save as PDF</button>
-            <button class="btn btn-success" id="save_as_png" value="">Save as High-Res PNG</button>
-         </div>
-        <div id="svgdataurl"></div>
-        
-        <!-- Hidden <FORM> to submit the SVG data to the server, which will convert it to SVG/PDF/PNG downloadable file.
-         The form is populated and submitted by the JavaScript below. -->
-        <form id="svgform" method="post" action="/cgi-bin/svgDownload.pl">
-            <input type="hidden" id="output_format" name="output_format" value="">
-            <input type="hidden" id="data" name="data" value="">
-        </form>
     </div>
     <div id='noTopics'>
         <h3>No Discussion Topics Available</h3>
@@ -237,7 +224,6 @@ if($_SESSION['countOfTopic'] > 0 ){
             //hide the network and matrix forms until a discussion has been selected.
             $('#networkSize').hide();
             $('#matrixOrder').hide();
-            $('#saveImage').hide();
             
             <?php echo $topicsAvaliable ?>
             
@@ -281,7 +267,6 @@ if($_SESSION['countOfTopic'] > 0 ){
                                     $('#vis_container').tabs('option', 'disabled',disabled);
                                     $('#vis_container').tabs({active: activeTab});
                                     $('.discussionLink').html("<a class='mini' target='_blank' href='" + d3data.topic.topic_url + "'>go to Discussion</a>");
-                                    $('#saveImage').show();
                                     $('input:radio[name="nodeTypeDisplay"][value="threads"]').prop('checked',true);
                                     $('#nodeSize').val('sent');
                                     $('#nodeColor').val('none');
@@ -365,7 +350,6 @@ $('input:radio[name="nodeTypeDisplay"]').change(
                             //$('#networkDirected').append(makeForceDirected(d3data));
                             //$('#nodeSize').val('sent');
                             $('#right-container').show();
-                            $('#saveImage').show();
                             $('#nodeType-posts').show();
                             $('#nodeType-people').hide();
                             break;
@@ -381,22 +365,18 @@ $('input:radio[name="nodeTypeDisplay"]').change(
                         case 'timeline':
                             //$('#timeline').append(makeTimeline1(d3data));
                             $('#timeline').append(makeTimeline2(d3data));
-                            $('#saveImage').show();
                             break;
                         case 'matrix':
                             $('line').css({"stroke": "#fff", "stroke-width": ".5px"});
                             $('text.active').css({"fill": "red"});
                             $('#matrix').append(makeBetween(d3data));
                             //$('#matrix').append(makeAdjMatrix(d3data));
-                            $('#saveImage').show();
                             break;
                         case 'statistics':
                             $('#statistics').append(makeStatistics(d3data));
-                            $('#saveImage').hide();
                             break;
                         case 'dataset':
                             $('#dataset').append(makeDataSet(d3data));
-                            $('#saveImage').hide();
                             break;
                         case 'stream':
                             //$('#stream').append(makeStream(d3data));
@@ -442,56 +422,6 @@ $('input:radio[name="nodeTypeDisplay"]').change(
         //    });
         //}(jQuery));
         
-
-
-        //http://d3export.housegordon.org/
-        //https://github.com/agordon/d3export_demo
-        /*
-           Utility function: populates the <FORM> with the SVG data
-           and the requested output format, and submits the form.
-        */
-        function submit_download_form(output_format)
-        {
-            
-            //https://gist.github.com/devinus/415179
-            //gistfile1.js
-            (function ($) {
-            var svgText =($('svg')[0]);
-                //NOTE: if the order of the stylesheets changes then the reference number to the d3-viz stylesheet will also need to change below.
-                //This can be changed by looping through the document.styleSheets looking for 'd3-viz' in [0].href
-                var rules = document.styleSheets[2].cssRules;
-                for (var idx = 0, len = rules.length; idx < len; idx++) {
-                  //$(rules[idx].selectorText).each(function (i, elem) {
-                  $('svg').find(rules[idx].selectorText).each(function (i, elem) {
-                    elem.style.cssText += rules[idx].style.cssText;
-                  });
-                }
-                $('style').remove();
-                $('script').remove();
-              })(jQuery);
-        
-                // Get the d3js SVG element
-                // Extract the data as SVG text string  
-                var svg = $('svg')[0];
-                var svg_xml = (new XMLSerializer).serializeToString(svg);
-
-                // Submit the <FORM> to the server.
-                // The result will be an attachment file to download.
-                var form = document.getElementById("svgform");
-                form['output_format'].value = output_format;
-                form['data'].value = svg_xml ;
-                form.submit();
-        }
-        
-        /*
-            One-time initialization
-        */
-        $(document).ready(function() {
-            // Attached actions to the buttons
-            $("#save_as_svg").click(function() { submit_download_form("svg"); });
-            $("#save_as_pdf").click(function() { submit_download_form("pdf"); });
-            $("#save_as_png").click(function() { submit_download_form("png"); });
-        });
     </script>
     <script>
         //http://blog.eliacontini.info/post/79860720828/export-to-csv-using-javascript-the-download

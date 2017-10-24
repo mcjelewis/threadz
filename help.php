@@ -111,9 +111,6 @@ session_start();
         <h3>Discussion Topic List</h3>
         <p>Select the title of a discussion from the drop down list above the chart tabs.  The list includes all published discussions that have one or more posts submitted to it.</p>
       
-        <h3>Saving Graphics</h3>
-        <p>On each of the charts there are buttons to save the graphic as a SVG, PDF or PNG file types. At this time, the graphics do not maintain the full set of formatting added to what you see on screen. While not perfect, the saved image is a good start.</p>
-      
         <h3>Network</h3> 
         <p>The network visualization shows a typical line/node graph that connects users or posts together.</p>
          <p>This visualization is useful to quickly discern any individual or group that is isolated or is a driving hub within the forum.</p>

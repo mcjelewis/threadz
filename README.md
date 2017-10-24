@@ -107,7 +107,6 @@ The current process for the creation of Canvas developer keys is to have your Ca
         $shared_secret = [your Key]  
 6. Edit the config-threadz.xml file.  
     - There are three lines that need to be edited, all related to the path to your webserver. Modify lines for the launch_url, domain, and url properties with path to your server. Or, you can use the XML Config Builder tool to generate a new xml file (http://www.edu-apps.org/build_xml.html) if you prefer. More information can be found at https://canvas.instructure.com/doc/api/file.tools_intro.html  
-7. Move the lib/pl/svgDownload.pl file into your server's perl directory (typically the cgi-bin outside of the webserver directory in Apache). On the treadz.php page, check the directory path in the hidden form titled svgform to make sure it matches where the svgDownload.pl page has been placed. This file is what is used to save the visualizations out as pdf, png, or svg files. 
 
 
 
