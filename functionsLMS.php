@@ -112,7 +112,7 @@ function getCanvasRoster($arrCurlRoster, $authorization){
         //if there are more records to be returned, Canvas will have the link in the url in the header
         if(array_key_exists('next', $arrCurlRoster['headerLinks'])){
             $arrCurlRoster=getCanvasAPIcurl($authorization, $arrCurlRoster['headerLinks']['next']);
-            getCanvasRoster($arrCurlRoster);
+            getCanvasRoster($arrCurlRoster, $authorization);
         }
 }
 function getCanvasTopicList($arrCurlTopics, $authorization){
