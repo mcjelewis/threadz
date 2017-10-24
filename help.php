@@ -37,40 +37,6 @@ session_start();
   </script>
 <body>
 <div id='accordion'>
-   
-        
-    <h3>Road Map</h3>
-    <div id='RoadMap'>
-        <p>There are several items that will continue to be worked on to improve Threadz.  Below is a list of some of those items and a rough timeframe of when they might be implemented.</p>
-        <ul>
-            <li>Next Up
-               <ul>
-                  <li>Betweenness Centrality on Network graph</li>
-                  <li>Eigenvector Centrality on Network graph</li>
-                  <li>Group Discussions</li>
-                  <li>Combine multiple discussions from course into single visualization</li>
-                  <li>Word Cloud</li>
-               </ul>
-            </li>
-            <li>Reported Bugs
-               <ul>
-                  <li>Timeout / unresponsive
-                     <ul>
-                        <li>Problem: If the session times out, no notification message appears when trying to access other discussions or the chord diagram.</li>
-                        <li>Work Around: Until this issue is addressed, the solution is to reinstigate Threadz by clicking the Threadz link in the left navigation.</li>
-                     </ul>
-                  </li>
-                  <li>Chord Diagram tool-tip information data not showing on mobile device
-                     <ul>
-                        <li>Problem: If accessing the chord diagram on a moblile device, the count of post information does not show because mobile doesn't allow for hover effects.</li>
-                        <li>Work Around: No current work around for this issue.</li>
-                     </ul>
-                  </li>
-               </ul>
-            </li>
-        </ul>
-    </div>
-        
     <h3>License</h3>
     <div id='license'>
         <p>
@@ -105,7 +71,7 @@ session_start();
         <p>The permissions to use this tool are not restricted by role. Both students and teachers are able to access Threadz when made available.  To disable Threadz, within the course settings Navigation tab, move Threadz below the hide from students line.</p>
       
         <h3>Contact</h3>
-        <p>This tool was created at Eastern Washington University by Instructional Technology Design and Development. Please contact Matt Lewis (mlewis23@ewu.edu) for more information.</p>
+        <p>This tool was created at Eastern Washington University by Instructional Technology Design and Development. Please contact Craig Thompson (craig.thompson@ubc.ca) for more information or to report bugs.</p>
       
 
         <h3>Discussion Topic List</h3>
