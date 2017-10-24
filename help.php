@@ -82,9 +82,9 @@ session_start();
         
     <h3>Acknowledgements</h3>
     <div id='acknowledgements'>
-        <p><a href='http://www.snappvis.org/'>SNAPP (Social Network Adapting Pedagogical Practice)</a><br>
-        Dr. Shane Dawson etal.  <br>
-        The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for Threadz.
+        <p>SNAPP (Social Network Adapting Pedagogical Practice)<br>
+        Dr. Shane Dawson et al.  <br>
+        The SNAPP tool is the work of Dr. Shane Dawson et al. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for Threadz.
         </p>
         
         <p><a href='https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2'>IMSBasicLTI</a><br>
