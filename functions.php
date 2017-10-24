@@ -27,7 +27,7 @@ function d3Data($topic_id){
     //$_SESSION[$array_title]['topic']['topic_title'] = $_SESSION['arrTopics'][$topic_id]['topic_title'];
     //$_SESSION[$array_title]['topic']['assignment_id'] = $_SESSION['arrTopics'][$topic_id]['assignment_id'];
     //$_SESSION[$array_title]['topic']['topic_id'] = $_SESSION['arrTopics'][$topic_id]['topic_id'];
-    //$_SESSION[$array_title]['topic']['url'] = $_SESSION['arrTopics'][$topic_id]['url'];
+    $_SESSION[$array_title]['topic']['url'] = $_SESSION['arrTopics'][$topic_id]['url'];
     //$_SESSION[$array_title]['topic']['due_date'] = $_SESSION['arrTopics'][$topic_id]['due_date'];
     //$_SESSION[$array_title]['topic']['require_initial_post'] = $_SESSION['arrTopics'][$topic_id]['require_initial_post'];
     
