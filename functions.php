@@ -92,22 +92,20 @@ function d3Data($topic_id){
             $deleted_by = 'false';
         }
         //set if message is unread
+        $unread = false;
         foreach($jsonData['unread_entries'] as $unread_post){
             if($unread_post == $view['id']){
                 $unread = true;
                 break;
-            }else{
-                $unread = false;
             }
         }
         
         //set if message marked as 'liked'
+        $liked = false;
         foreach($jsonData['entry_ratings'] as $liked_post){
             if($liked_post == $view['id']){
                 $liked = true;
                 break;
-            }else{
-                $liked = false;
             }
         }
         $message_id = $view['id'];
