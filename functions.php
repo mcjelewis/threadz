@@ -269,7 +269,11 @@ function setPostData2Session($arr_title, $reply_to, $posted_by, $arrReply, $topi
     $_SESSION[$arr_title]['totals']['messageData'][$posted_by]['text'] =  $_SESSION[$arr_title]['totals']['messageData'][$posted_by]['text'] . " ". strip_tags(str_replace('"','',$arrReply['posted_message']));
     
     //set relationship count in node array
-    $_SESSION[$arr_title]['nodes'][$posted_by]['word_count_avg'] = $_SESSION[$arr_title]['nodes'][$posted_by]['word_count']/$arrReply['posted_word_count'];
+    if($arrReply['posted_word_count'] == 0){
+        $_SESSION[$arr_title]['nodes'][$posted_by]['word_count_avg'] = 0;
+    }else{
+        $_SESSION[$arr_title]['nodes'][$posted_by]['word_count_avg'] = $_SESSION[$arr_title]['nodes'][$posted_by]['word_count']/$arrReply['posted_word_count'];
+    }
     
     //convert time to Pacific timezine add post to timeline array
     //$post_datetime = new DateTime($arrReply['posted_on']);
