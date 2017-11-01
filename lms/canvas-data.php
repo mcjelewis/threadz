@@ -14,7 +14,7 @@ if($current_token){
     $authorization = "Authorization: Bearer ". $current_token;
     unset($_SESSION['select_list_option']);
     
-    $urlRoster = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/enrollments?per_page=50";
+    $urlRoster = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/enrollments?per_page=100";
     $arrCurlRoster=getCanvasAPIcurl($authorization, $urlRoster);
 
     //get the data out of the curl API call and add it to Session
@@ -23,7 +23,7 @@ if($current_token){
     //Count the number of topics in course
     $_SESSION['countOfTopic'] = 0;
     
-    $urlTopics = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics?per_page=50";
+    $urlTopics = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics?per_page=100";
     $arrCurlTopics=getCanvasAPIcurl($authorization, $urlTopics);
 
     //get the data out of the curl API call and add it to Session
