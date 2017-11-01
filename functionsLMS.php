@@ -90,7 +90,6 @@ function getCanvasHeaderLinks($header){
 }
 function getCanvasRoster($arrCurlRoster, $authorization){
         $jsonRoster = json_decode($arrCurlRoster['body'], true);
-        $_SESSION['course']['roster']['students'] = array();
         //Depending on the role of the users ($_SESSION['roles']) there are some other data points that are available from the enrollment api call.
         //Currently there is no use case set for applying this data to the analytics, so it is not being captured.  But in the future there might be a need.
         //total_activity_time
