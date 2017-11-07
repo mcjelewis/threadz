@@ -13,7 +13,9 @@
 if($current_token){
     $authorization = "Authorization: Bearer ". $current_token;
     unset($_SESSION['select_list_option']);
-    
+  
+    $_SESSION['course']['roster']['students'] = array();
+
     $urlRoster = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/enrollments?per_page=100";
     $arrCurlRoster=getCanvasAPIcurl($authorization, $urlRoster);
 
