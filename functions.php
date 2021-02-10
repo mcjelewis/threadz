@@ -64,10 +64,22 @@ function d3Data($topic_id){
         $_SESSION["course"]["roster"]["user"][] = $participant['id'];
         $sourceNum++;
     }
+    if ( array_key_exists( "groupId",  $_SESSION['topicList'][$topic_id] ) ) {
+        // discussion is a group
+        $groupId = $_SESSION['topicList'][$topic_id]['groupId'];
+        $_SESSION[$array_title]["missing"]["id"] = array_diff($_SESSION['groups'][$groupId]['roster'], $_SESSION["course"]["roster"]["user"]);
+        $_SESSION[$array_title]["enrollments"] = $_SESSION["course"]["roster"];
 
-    //Compare the full course roster to participants. Save students that didn't participate as missing.
-    $_SESSION[$array_title]["missing"]["id"] = array_diff($_SESSION["course"]["roster"]["students"], $_SESSION["course"]["roster"]["user"]);
-    $_SESSION[$array_title]["enrollments"] = $_SESSION["course"]["roster"];
+        //$_SESSION[$array_title]["enrollments"] = $_SESSION['groups'][$groupId]['roster'];
+    } else {
+        //Compare the full course roster to participants. Save students that didn't participate as missing.
+        //if is group discussion, then compare with group students
+        $_SESSION[$array_title]["missing"]["id"] = array_diff($_SESSION["course"]["roster"]["students"], $_SESSION["course"]["roster"]["user"]);
+        $_SESSION[$array_title]["enrollments"] = $_SESSION["course"]["roster"];
+
+    }
+    
+
 
 
     //step through the view (post) data.  collect and organize the data into the link and node arrays for discussion
@@ -111,13 +123,19 @@ function d3Data($topic_id){
             }
         }
         $message_id = $view['id'];
-        if(in_array($_SESSION[$array_title]['unread_entries'], $message_id)){
+        if ( ! $message_id ) {
+            continue;
+        }
+        //if(in_array($_SESSION[$array_title]['unread_entries'], $message_id)){
+        if(in_array($message_id, $_SESSION[$array_title]['unread_entries'])){
             $unread = true;
         }
-        if(in_array($_SESSION[$array_title]['foreced_entries'], $message_id)){
-            $unread_manual = true;
+        if ( $_SESSION[$array_title]['foreced_entries'] ) {
+            if(in_array($message_id, $_SESSION[$array_title]['foreced_entries'])){
+                $unread_manual = true;
+            }
         }
-        if(in_array($_SESSION[$array_title]['entry_ratings'], $message_id)){
+        if(in_array($message_id, $_SESSION[$array_title]['entry_ratings'])){
             $topic_rating = true;
             $topic_rating_count = $_SESSION[$array_title]['entry_ratings'][$message_id];
         }

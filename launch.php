@@ -101,7 +101,10 @@ $_SESSION['domainLMS'] = 'https://'. parse_url($_REQUEST['launch_presentation_re
 //////////////////////////////////////////////////////
 //Get the token for the user
 //redirects to the URI set in LTI
-header('Location: '. $_SESSION['domainLMS'].'/login/oauth2/auth?client_id='.$_SESSION['client_id'].'&response_type=code&redirect_uri='.$_SESSION['domainThreadz'].'/tokenAuth.php&state='.$_SESSION['token_state_id']);
+$scopeStr = '&scope=url:GET|/api/v1/courses/:course_id/enrollments url:GET|/api/v1/courses/:course_id/discussion_topics url:GET|/api/v1/courses/:course_id/discussion_topics/:topic_id url:GET|/api/v1/courses/:course_id/discussion_topics/:topic_id/view url:GET|/api/v1/courses/:course_id/groups url:GET|/api/v1/groups/:group_id/discussion_topics/:topic_id url:GET|/api/v1/groups/:group_id/discussion_topics/:topic_id/view url:GET|/api/v1/groups/:group_id/discussion_topics url:GET|/api/v1/groups/:group_id/users';
+//$scopeStr .= ' url:GET|/api/v1/courses/:course_id/groups url:GET|/api/v1/groups/:group_id url:GET|/api/v1/groups/:group_id/discussion_topics/:topic_id url:GET|/api/v1/groups/:group_id/discussion_topics/:topic_id/view';
+//$scopeStr = '&scope=/auth/userinfo';
+header('Location: '. $_SESSION['domainLMS'].'/login/oauth2/auth?client_id='.$_SESSION['client_id'].'&response_type=code&redirect_uri='.$_SESSION['domainThreadz'].'/tokenAuth.php&state='.$_SESSION['token_state_id'].$scopeStr);
 exit();   
 
 
