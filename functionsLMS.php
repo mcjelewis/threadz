@@ -115,11 +115,55 @@ function getCanvasRoster($arrCurlRoster, $authorization){
             getCanvasRoster($arrCurlRoster);
         }
 }
+
+function getCanvasGroup($arrCurlGroup, $authorization){
+    $jsonGroups = json_decode($arrCurlGroup['body'], true);
+    $_SESSION['groups']= array();
+    //Depending on the role of the users ($_SESSION['roles']) there are some other data points that are available from the enrollment api call.
+    //Currently there is no use case set for applying this data to the analytics, so it is not being captured.  But in the future there might be a need.
+    //total_activity_time
+    //last_activity_at
+    //grades:current_score
+    //grades:final_score
+
+    foreach($jsonGroups as $group){
+        $_SESSION['groups'][$group['id']] = array(
+            'json'=> $group,
+            'id'=> $group['id'],
+            'name'=> $group['name'],
+            'has_submission'=> $group['has_submission'],
+            'leader'=> $group['leader'],
+            'roster'=> [],
+        );
+        //now get group users
+        $urlGroup = $_SESSION['domainLMS']."/api/v1/groups/".$group['id']."/users";
+        $arrCurlGroupUsers=getCanvasAPIcurl($authorization, $urlGroup);
+        
+        getCanvasGroupUsersData($arrCurlGroupUsers, $authorization, $group['id'] );
+        //$_SESSION['course']['roster']['students'][] = $roster['user_id'];
+    }
+    //if there are more records to be returned, Canvas will have the link in the url in the header
+    if(array_key_exists('next', $arrCurlRoster['headerLinks'])){
+        $arrCurlRoster=getCanvasAPIcurl($authorization, $arrCurlRoster['headerLinks']['next']);
+        getCanvasGroup($arrCurlRoster,$authorization);
+    }
+}
+function getCanvasGroupUsersData($arrCurlGroupUsers, $authorization, $groupId) {
+    $jsonUsers = json_decode($arrCurlGroupUsers['body'], true);
+    //print_r( $jsonUsers );
+    foreach($jsonUsers as $user){
+        $_SESSION['groups'][$groupId]['roster'][] = $user['id'];
+    }
+}
+
 function getCanvasTopicList($arrCurlTopics, $authorization){
         //Save json Data of all course discussion topics into SESSION
         $jsonTopics = json_decode($arrCurlTopics['body'], true);
         $_SESSION['jsonTopics'] = $jsonTopics;
-
+        if ( ! isset( $_SESSION['check_list_option'] ) ) {
+            $_SESSION['check_list_option'] = "";
+        }
+        
         //Step through each json record, saving data into SESSION
         foreach($jsonTopics as $topic){
 
@@ -152,7 +196,8 @@ function getCanvasTopicList($arrCurlTopics, $authorization){
                 'topic_children' => $topic['topic_children'],
             );
 
-            $urlTopic = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics/".$topic_id."/view.json";
+            //$urlTopic = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics/".$topic_id."/view.json";
+            $urlTopic = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics/".$topic_id."/view";
             $arrCurlTopic=getCanvasAPIcurl($authorization, $urlTopic);
 
             getCanvasTopicData($arrCurlTopic, $authorization, $topic_id);
@@ -160,6 +205,7 @@ function getCanvasTopicList($arrCurlTopics, $authorization){
             //create HTML display Topic list for published discussions and with discussions with one or more posts.
             if($topic['published'] == true && $topic['discussion_subentry_count']>0){
                 $_SESSION['select_list_option'] .="<option value='".$topic_id."'>".$topic_title."</option>";
+                $_SESSION['check_list_option'] .="<label><input type='checkbox' name='topicList[]' checked value='".$topic_id."'>".$topic_title.'</label><br>';
                 //count the number of topics that are published and have more than one post, this count determins what
                 //initially gets displayed on threadz.php
                 $_SESSION['countOfTopic']++;
@@ -170,16 +216,18 @@ function getCanvasTopicList($arrCurlTopics, $authorization){
 //        var_dump($_SESSION['topicList'][3034092]);
 //exit();
         //if there are more records to be returned, Canvas will have the link in the url in the header
-        if(array_key_exists('next', $arrCurlTopics['headerLinks'])){
-            $arrCurlTopics=getCanvasAPIcurl($authorization, $arrCurlTopics['headerLinks']['next']);
-            getCanvasTopicList($arrCurlTopics);
+        if ( $arrCurlTopics['headerLinks'] ) {
+            if(array_key_exists('next', $arrCurlTopics['headerLinks'])){
+                $arrCurlTopics=getCanvasAPIcurl($authorization, $arrCurlTopics['headerLinks']['next']);
+                getCanvasTopicList($arrCurlTopics);
+            }
         }
 }
 function getCanvasTopicData($arrCurlTopic, $authorization, $topic_id){
         //save individual discussion topic post data into SESSION using the topic id as the key name
         $jsonData = json_decode($arrCurlTopic['body'], true);
 
-        if($jsonData.status != "unauthenticated"){
+        if($jsonData.status != "unauthenticated" && $jsonData.id && $jsonData.message ){
             $_SESSION['json_'.$topic_id] = $jsonData;
             $_SESSION['arrTopics'][$topic_id]['json'] = $jsonData;
             $_SESSION['arrTopics'][$topic_id]['settings'] = $_SESSION['topicList'][$topic_id];
@@ -210,5 +258,74 @@ function getCanvasTopicData($arrCurlTopic, $authorization, $topic_id){
                 getCanvasTopicData($arrCurlTopic, $authorization, $topic_id);
             }
         }
+}
+
+function getCanvasGroupTopicList($arrCurlTopics, $authorization, $groupId){
+    //Save json Data of all course discussion topics into SESSION
+    $jsonTopics = json_decode($arrCurlTopics['body'], true);
+    $_SESSION['jsonTopics'] = $jsonTopics;
+    if ( ! isset( $_SESSION['check_list_option'] ) ) {
+        $_SESSION['check_list_option'] = "";
+    }
+    
+    //Step through each json record, saving data into SESSION
+    foreach($jsonTopics as $topic){
+
+        $topic_id = $topic['id'];
+        $topic_title = $topic['title'];
+        //echo $topic_id . "<br>";
+        if($topic['assignment_id']){
+            $due_at = $topic['assignment']['due_at'];
+        }else{
+            $due_at = "";
+        }
+        $_SESSION['topicList'][$topic_id] = array(
+            'topic_id' => $topic_id,
+            'topic_title'=> $topic_title,
+            'topic_subentry_count' => $topic['discussion_subentry_count'],
+            'published'=> $topic['published'],
+            'require_initial_post'=> $topic['require_initial_post'],
+            'users_can_see_posts'=> $topic['users_can_see_posts'],
+            'assignment_id'=> $topic['assignment_id'],
+            'due_at'=> $due_at,
+            'message' => $topic['message'],
+            'author_id' => $topic['author']['id'],
+            'topic_url' => $topic['url'],
+            'discussion_type' => $topic['discussion_type'],
+            'topic_subentry_count' => $topic['discussion_subentry_count'],
+            'topic_word_count' => 0,
+            'allow_rating' => $topic['allow_rating'],
+            'unread_count' => $topic['unread_count'],
+            'group_category_id' => $topic['group_category_id'],
+            'topic_children' => $topic['topic_children'],
+            'groupId' => $groupId,
+        );
+
+        //$urlTopic = $_SESSION['domainLMS']."/api/v1/courses/".$_SESSION['courseID']."/discussion_topics/".$topic_id."/view.json";
+        $urlTopic = $_SESSION['domainLMS']."/api/v1/groups/".$groupId."/discussion_topics/".$topic_id."/view";
+        $arrCurlTopic=getCanvasAPIcurl($authorization, $urlTopic);
+
+        getCanvasTopicData($arrCurlTopic, $authorization, $topic_id);
+        
+        //create HTML display Topic list for published discussions and with discussions with one or more posts.
+        if($topic['published'] == true && $topic['discussion_subentry_count']>0){
+            $_SESSION['select_list_option'] .="<option value='".$topic_id."'>".$topic_title."</option>";
+            $_SESSION['check_list_option'] .="<label><input type='checkbox' name='topicList[]' checked value='".$topic_id."'>".$topic_title.'</label><br>';
+            //count the number of topics that are published and have more than one post, this count determins what
+            //initially gets displayed on threadz.php
+            $_SESSION['countOfTopic']++;
+        }
+    }
+//        var_dump($_SESSION['course']['roster']);
+//        echo "<br>========<br>";
+//        var_dump($_SESSION['topicList'][3034092]);
+//exit();
+    //if there are more records to be returned, Canvas will have the link in the url in the header
+    if ( $arrCurlTopics['headerLinks'] ) {
+        if(array_key_exists('next', $arrCurlTopics['headerLinks'])){
+            $arrCurlTopics=getCanvasAPIcurl($authorization, $arrCurlTopics['headerLinks']['next']);
+            getCanvasGroupTopicList($arrCurlTopics, $authorization, $groupId);
+        }
+    }
 }
 ?>
