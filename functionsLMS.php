@@ -110,7 +110,8 @@ function getCanvasRoster($arrCurlRoster, $authorization){
         }
         //if there are more records to be returned, Canvas will have the link in the url in the header
         if(array_key_exists('next', $arrCurlRoster['headerLinks'])){
-            $arrCurlRoster=getCanvasAPIcurl($authorization, $arrCurlRoster['headerLinks']['next']);
+	    $link_roster = trim($arrCurlRoster['headerLinks']['next']);	
+	    $arrCurlRoster=getCanvasAPIcurl($authorization, $link_roster);
             getCanvasRoster($arrCurlRoster, $authorization);
         }
 }
@@ -170,7 +171,8 @@ function getCanvasTopicList($arrCurlTopics, $authorization){
 //exit();
         //if there are more records to be returned, Canvas will have the link in the url in the header
         if(array_key_exists('next', $arrCurlTopics['headerLinks'])){
-            $arrCurlTopics=getCanvasAPIcurl($authorization, $arrCurlTopics['headerLinks']['next']);
+	    $link_topics = trim($arrCurlTopics['headerLinks']['next']);	
+	    $arrCurlTopicsi = getCanvasAPIcurl($authorization, $arrCurlTopics['headerLinks']['next']);
             getCanvasTopicList($arrCurlTopics);
         }
 }
@@ -204,7 +206,8 @@ function getCanvasTopicData($arrCurlTopic, $authorization, $topic_id){
             //);
             
             //if there are more records to be returned, Canvas will have the link in the url in the header
-            if(array_key_exists('next', $arrCurlTopic['headerLinks'])){
+	    if(array_key_exists('next', $arrCurlTopic['headerLinks'])){
+		$link_topics = trim($arrCurlTopic['headerLinks']['next']);
                 $arrCurlTopic=getCanvasAPIcurl($authorization, $arrCurlTopic['headerLinks']['next']);
                 getCanvasTopicData($arrCurlTopic, $authorization, $topic_id);
             }
