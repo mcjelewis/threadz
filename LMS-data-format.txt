@@ -3,8 +3,6 @@ Format of LMS data for Threadz
 ======================================
 The data coming out of the LMS needs to be formatted in a specific way in order to use the functions that process the data for the D3 graphic displays. The php array titled 'arrTopic' holds the information about a discussion topic as well as the discussion content (participants, posts, replies) in SESSION. The individual discussion topic data is saved into the array using the topic id as the key name.
 
-
-
 ======================================
 Data Processing Pages:
 ======================================
