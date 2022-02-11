@@ -15,9 +15,6 @@ functions.php -> d3Data() -> This function steps through an individual discussio
 
 ajax.php -> This page initiates the d3Data() function.
 
-
-
-
 ======================================
 EXAMPLES:
 ======================================
