@@ -27,7 +27,7 @@ function d3Data($topic_id){
     //$_SESSION[$array_title]['topic']['topic_title'] = $_SESSION['arrTopics'][$topic_id]['topic_title'];
     //$_SESSION[$array_title]['topic']['assignment_id'] = $_SESSION['arrTopics'][$topic_id]['assignment_id'];
     //$_SESSION[$array_title]['topic']['topic_id'] = $_SESSION['arrTopics'][$topic_id]['topic_id'];
-    //$_SESSION[$array_title]['topic']['url'] = $_SESSION['arrTopics'][$topic_id]['url'];
+    $_SESSION[$array_title]['topic']['url'] = $_SESSION['arrTopics'][$topic_id]['url'];
     //$_SESSION[$array_title]['topic']['due_date'] = $_SESSION['arrTopics'][$topic_id]['due_date'];
     //$_SESSION[$array_title]['topic']['require_initial_post'] = $_SESSION['arrTopics'][$topic_id]['require_initial_post'];
     
@@ -40,7 +40,7 @@ function d3Data($topic_id){
     //reset source number back to zero
    $sourceNum = 0;
    
-   //capture unread, foreced_entries, and entry_ratings
+   //capture unread, forced_entries, and entry_ratings
    $_SESSION[$array_title]['unread_entries'] = $jsonData['unread_entries'];
    $_SESSION[$array_title]['forced_entries'] = $jsonData['forced_entries'];
    $_SESSION[$array_title]['entry_ratings'] = $jsonData['entry_ratings'];
@@ -92,32 +92,30 @@ function d3Data($topic_id){
             $deleted_by = 'false';
         }
         //set if message is unread
+        $unread = false;
         foreach($jsonData['unread_entries'] as $unread_post){
             if($unread_post == $view['id']){
                 $unread = true;
                 break;
-            }else{
-                $unread = false;
             }
         }
         
         //set if message marked as 'liked'
+        $liked = false;
         foreach($jsonData['entry_ratings'] as $liked_post){
             if($liked_post == $view['id']){
                 $liked = true;
                 break;
-            }else{
-                $liked = false;
             }
         }
         $message_id = $view['id'];
-        if(in_array($_SESSION[$array_title]['unread_entries'], $message_id)){
+        if(in_array($message_id, $_SESSION[$array_title]['unread_entries'])){
             $unread = true;
         }
-        if(in_array($_SESSION[$array_title]['foreced_entries'], $message_id)){
+        if(in_array($message_id, $_SESSION[$array_title]['forced_entries'])){
             $unread_manual = true;
         }
-        if(in_array($_SESSION[$array_title]['entry_ratings'], $message_id)){
+        if(in_array($message_id, $_SESSION[$array_title]['entry_ratings'])){
             $topic_rating = true;
             $topic_rating_count = $_SESSION[$array_title]['entry_ratings'][$message_id];
         }
@@ -271,7 +269,11 @@ function setPostData2Session($arr_title, $reply_to, $posted_by, $arrReply, $topi
     $_SESSION[$arr_title]['totals']['messageData'][$posted_by]['text'] =  $_SESSION[$arr_title]['totals']['messageData'][$posted_by]['text'] . " ". strip_tags(str_replace('"','',$arrReply['posted_message']));
     
     //set relationship count in node array
-    $_SESSION[$arr_title]['nodes'][$posted_by]['word_count_avg'] = $_SESSION[$arr_title]['nodes'][$posted_by]['word_count']/$arrReply['posted_word_count'];
+    if($arrReply['posted_word_count'] == 0){
+        $_SESSION[$arr_title]['nodes'][$posted_by]['word_count_avg'] = 0;
+    }else{
+        $_SESSION[$arr_title]['nodes'][$posted_by]['word_count_avg'] = $_SESSION[$arr_title]['nodes'][$posted_by]['word_count']/$arrReply['posted_word_count'];
+    }
     
     //convert time to Pacific timezine add post to timeline array
     //$post_datetime = new DateTime($arrReply['posted_on']);

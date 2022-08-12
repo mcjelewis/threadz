@@ -37,40 +37,6 @@ session_start();
   </script>
 <body>
 <div id='accordion'>
-   
-        
-    <h3>Road Map</h3>
-    <div id='RoadMap'>
-        <p>There are several items that will continue to be worked on to improve Threadz.  Below is a list of some of those items and a rough timeframe of when they might be implemented.</p>
-        <ul>
-            <li>Next Up
-               <ul>
-                  <li>Betweenness Centrality on Network graph</li>
-                  <li>Eigenvector Centrality on Network graph</li>
-                  <li>Group Discussions</li>
-                  <li>Combine multiple discussions from course into single visualization</li>
-                  <li>Word Cloud</li>
-               </ul>
-            </li>
-            <li>Reported Bugs
-               <ul>
-                  <li>Timeout / unresponsive
-                     <ul>
-                        <li>Problem: If the session times out, no notification message appears when trying to access other discussions or the chord diagram.</li>
-                        <li>Work Around: Until this issue is addressed, the solution is to reinstigate Threadz by clicking the Threadz link in the left navigation.</li>
-                     </ul>
-                  </li>
-                  <li>Chord Diagram tool-tip information data not showing on mobile device
-                     <ul>
-                        <li>Problem: If accessing the chord diagram on a moblile device, the count of post information does not show because mobile doesn't allow for hover effects.</li>
-                        <li>Work Around: No current work around for this issue.</li>
-                     </ul>
-                  </li>
-               </ul>
-            </li>
-        </ul>
-    </div>
-        
     <h3>License</h3>
     <div id='license'>
         <p>
@@ -82,9 +48,9 @@ session_start();
         
     <h3>Acknowledgements</h3>
     <div id='acknowledgements'>
-        <p><a href='http://www.snappvis.org/'>SNAPP (Social Network Adapting Pedagogical Practice)</a><br>
-        Dr. Shane Dawson etal.  <br>
-        The SNAPP tool is the work of Dr. Shane Dawson etal. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for Threadz.
+        <p>SNAPP (Social Network Adapting Pedagogical Practice)<br>
+        Dr. Shane Dawson et al.  <br>
+        The SNAPP tool is the work of Dr. Shane Dawson et al. and is a similar visualization tool, that creates visualizations of the interactions within a discussion forum.  SNAPP however is not compatible with Canvas, thus the need for Threadz.
         </p>
         
         <p><a href='https://code.google.com/p/basiclti4wordpress/source/browse/trunk/producer/mu-plugins/IMSBasicLTI/ims-blti/?r=2'>IMSBasicLTI</a><br>
@@ -105,14 +71,11 @@ session_start();
         <p>The permissions to use this tool are not restricted by role. Both students and teachers are able to access Threadz when made available.  To disable Threadz, within the course settings Navigation tab, move Threadz below the hide from students line.</p>
       
         <h3>Contact</h3>
-        <p>This tool was created at Eastern Washington University by Instructional Technology Design and Development. Please contact Matt Lewis (mlewis23@ewu.edu) for more information.</p>
+        <p>This tool was created at Eastern Washington University by Instructional Technology Design and Development. Please contact Craig Thompson (craig.thompson@ubc.ca) for more information or to report bugs.</p>
       
 
         <h3>Discussion Topic List</h3>
         <p>Select the title of a discussion from the drop down list above the chart tabs.  The list includes all published discussions that have one or more posts submitted to it.</p>
-      
-        <h3>Saving Graphics</h3>
-        <p>On each of the charts there are buttons to save the graphic as a SVG, PDF or PNG file types. At this time, the graphics do not mantain the full set of formatting added to what you see on screen. While not perfect, the saved image is a good start.</p>
       
         <h3>Network</h3> 
         <p>The network visualization shows a typical line/node graph that connects users or posts together.</p>
@@ -124,10 +87,11 @@ session_start();
         <p>The chord diagram displays the directional paths of the interactions between two students or instructor. The count of posts is represented by the thickness of the line at either. Threadz uses a dynamic interface allowing the user to hover over the outer edge of the circle on a specific user to display the number of posts sent and received. Hover over the chord line that connects two students to display the count of posts from either direction.</p>
     
         <h3>Timeline</h3>
-        <p>The timeline visualization displays the count of discussion posts by date. This visual can help you determin the rate of submissions and determin if there are any patterns to those submissions.</p>
+        <p>The timeline visualization displays the count of discussion posts by date. This visual can help you determine the rate of submissions and determine if there are any patterns to those submissions.</p>
       
         <h3>Statistics</h3>
         <p>The Statistics tab shows the spreadsheet view of the discussion with counts of participants, posts, threads, words per post, words per thread.</p>
+        <p>In the discussion threads table, posted_wordCount and total_wordCount refer to the length of the first post and the entire thread, respectively.</p>
    </div>
 </div>
 
