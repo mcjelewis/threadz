@@ -12,10 +12,12 @@
 //////////////////////////////////////////////////////
 //Set LTI domain
 //The domainThreadz variable needs to match the URI provided in the original LTI form. Any redirects from the OAuth2 process must use this domain.
-$_SESSION['domainThreadz'] = "Server URL of where your Threadz folder is located";
+$_SESSION['domainThreadz'] = $_SERVER['domainThreadz'];
 
 
-$_SESSION['domainLMS'] = "LMS URL";
+$_SESSION['domainLMS'] = $_SERVER['domainLMS'];
+
+
 
 //If you are going through a proxy, you can add that here, otherwise leave as null.
 $_SESSION['proxy'] = null;
@@ -26,7 +28,9 @@ $_SESSION['proxy'] = null;
 //format used by the visualizations created in D3.
 
 //Set LMS - uncomment the LMS used for this LTI
-$lms = 'canvas';
+$lms = $_SERVER['lms'];
+$domainCanvas = $_SERVER['domainCanvas'];
+
 //$lms = 'moodle';
 //$lms = 'sakai';
 //$lms = 'blackboard';
@@ -35,12 +39,15 @@ $lms = 'canvas';
 //////////////////////////////////////////////////////
 //Set the varibles needed to collect the API discussion data using the users own access token.
 //CThe current process for the creation of Canvas developer keys is to have your Canvas admin generate them. The Canvas guides have a helpful description about the process (https://guides.instructure.com/m/4214/l/441833-how-do-i-add-a-developer-key-for-an-account).
-$_SESSION['client_id'] = 000;  //replace with your client id
-$_SESSION['client_secret'] = "Your Dev Key"; //replace with your key
+$_SESSION['client_id'] = $_SERVER['client_id'];
+
+$_SESSION['client_secret'] =  $_SERVER['client_secret'];
+
+
 
 //////////////////////////////////////////////////////
 //set variable to the shared secret used when setting up the lti.
-$shared_secret = "threadz";
+$shared_secret =  $_SERVER['client_secret'];
 
 //////////////////////////////////////////////////////
 //Array of words to filter out for wordCloud
