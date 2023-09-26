@@ -420,12 +420,12 @@ function setMessagesArray($data, $i){
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function setRoles($data){
     $roles = array('student'=>false, 'teacher'=>false, 'ta'=>false, 'designer'=>false, 'observer'=>false, 'admin'=>false);
-    if(in_array('Learner',$data)) $roles['student']=true;
-    if(in_array('Instructor',$data)) $roles['teacher']=true;
-    if(in_array('TeachingAssistant',$data)) $roles['ta']=true;
-    if(in_array('ContentDeveloper',$data)) $roles['designer']=true;
-    if(in_array('Observer',$data)) $roles['observer']=true;
-    if(in_array('Administrator',$data)) $roles['admin']=true;
+    if(in_array('Learner',$data,false)) $roles['student']=true;
+    if(in_array('Instructor',$data,false)) $roles['teacher']=true;
+    if(in_array('TeachingAssistant',$data,false)) $roles['ta']=true;
+    if(in_array('ContentDeveloper',$data,false)) $roles['designer']=true;
+    if(in_array('Observer',$data,false)) $roles['observer']=true;
+    if(in_array('Administrator',$data,false)) $roles['admin']=true;    
     return $roles;
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
