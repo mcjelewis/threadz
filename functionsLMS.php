@@ -179,7 +179,7 @@ function getCanvasTopicList($arrCurlTopics, $authorization){
 function getCanvasTopicData($arrCurlTopic, $authorization, $topic_id){
         //save individual discussion topic post data into SESSION using the topic id as the key name
         $jsonData = json_decode($arrCurlTopic['body'], true);
-
+	echo($jsonData)
         if($jsonData.status != "unauthenticated"){
             $_SESSION['json_'.$topic_id] = $jsonData;
             $_SESSION['arrTopics'][$topic_id]['json'] = $jsonData;
