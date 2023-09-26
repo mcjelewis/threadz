@@ -172,7 +172,7 @@ function getCanvasTopicList($arrCurlTopics, $authorization){
         //if there are more records to be returned, Canvas will have the link in the url in the header
         if(array_key_exists('next', $arrCurlTopics['headerLinks'])){
 	    $link_topics = trim($arrCurlTopics['headerLinks']['next']);	
-	    $arrCurlTopicsi = getCanvasAPIcurl($authorization, $arrCurlTopics['headerLinks']['next']);
+	    $arrCurlTopics = getCanvasAPIcurl($authorization, $arrCurlTopics['headerLinks']['next']);
             getCanvasTopicList($arrCurlTopics);
         }
 }
