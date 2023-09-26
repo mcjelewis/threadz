@@ -12,7 +12,7 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-//session_destroy();
+session_destroy();
 ini_set('session.gc_maxlifetime', 1800);
 setcookie("Threadz",time(),time()+1800);
 session_start();
